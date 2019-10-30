@@ -1,6 +1,156 @@
-/* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: pink;
+@import '_variables';
 
 body {
-  background-color: $primary-background;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+span {
+  margin-left: 8px;
+}
+
+.splash__container {
+  background-image: linear-gradient( rgba(0,0,0,0.3), rgba(0, 0, 0, 0.3) ), url("");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+    .splash__header {
+      background-color: rgba(238, 238, 238, 0.9);
+      border-radius: 6px;
+      font-size: 4.5em;
+      font-weight: 400;
+      height: 45%;
+      justify-content: center;
+      margin: 20% 3% 16% 3%;
+      text-align: center;
+      width: 100%;
+    }
+    .splash__span {
+      font-style: italic;
+      font-weight: 700;
+    }
+    .splash__enter {
+      background-color: rgba(238, 238, 238, 0.8);
+      font-size: 1.5em;
+      height: 60px;
+      position: absolute;
+      top: 60%;
+      width: 400px;
+    }
+}
+
+header {
+  height: 50%;
+  width: 100%;
+  background-color: grey;
+  h2 {
+    font-size: 3em;
+    font-weight: 400;
+    margin: 0;
+    padding: 10px;
+    .header__span {
+      font-style: italic;
+      font-weight: 700;
+    }
+  }
+}
+
+nav {
+  background-color: grey;
+}
+
+.header__guest-name {
+  bottom: 90%;
+  font-size: 1.5em;
+  left: 63%;
+  position: absolute;
+}
+
+button {
+  border-radius: 8px;
+  font-size: 1em;
+  height: 30px;
+  margin: 10px;
+  width: 13%;
+    &:hover {
+      font-weight: 900;
+      cursor: pointer;
+      transform: scale(1.1);
+      transition: all .1s ease-in-out;
+    }
+}
+  
+.main__btn:hover,
+.main__btn-clicked {
+  background: $main-color;
+}
+
+.article__main {
+  border: 12px solid $main-color;
+}
+
+.guest__btn:hover,
+.guest__btn-clicked {
+  background-color: $guest-color;
+}
+
+.article__guest {
+  border: 12px solid $guest-color;
+}
+
+.bookings__btn:hover,
+.bookings__btn-clicked {
+  background-color: $bookings-color
+}
+
+.article__bookings {
+  border: 12px solid $bookings-color;
+}
+
+
+.section__main,
+.section__guest,
+.section__bookings {
+  background-image: linear-gradient( rgba(0,0,0,0.3), rgba(0, 0, 0, 0.3) ), url("");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+article {
+  background-color: rgba(238, 238, 238, 1);
+  border-radius: 20px;
+  font-size: 1.5em;
+  height: 58%;
+  padding: 1% 2% 0 4%;
+  position: absolute;
+  top: 43%;
+  width: 76%;
+}
+
+.article__input-container {
+  border: 1px solid black;
+  display: inline-block;
+  height: 50%;
+  margin-left: 20px;
+  padding: 16px;
+  width: 40%;
+}
+
+.article__input {
+  height: 40px;
+  width: 85%;
+}
+
+.div__guest--btn{
+  border-radius: 5px;
+  height: 30px;
+  width: 60%;
+    &:hover {
+      font-weight: 900;
+      background-color: darkgray;
+    }
 }
