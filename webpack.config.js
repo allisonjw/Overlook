@@ -19,25 +19,34 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|gif)$/,
         use: [
-              {
-                loader: 'file-loader',
-                options: {
-                  name: '[name].[ext]',
-                  outputPath: 'images/',
-                  publicPath: 'images/'
-                }
-              }
-            ]
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'images/',
+              publicPath: 'images/'
+            }
+          }
+        ]
       }
     ],
   },
   // Below is needed for webpack-dev-server
   plugins: [
     new HtmlWebpackPlugin({
+      filename: 'index.html',
       template: './src/index.html'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'customer.html',
+      template: './src/customer.html'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'manager.html',
+      template: './src/manager.html'
     })
   ],
   devServer: {
-         contentBase: './dist'
+    contentBase: './dist'
   }
 };
