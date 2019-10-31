@@ -9,45 +9,42 @@ span {
 }
 
 .splash__container {
-  // background-image: linear-gradient( rgba(0,0,0,0.3), rgba(0, 0, 0, 0.3) ), url("");
+  background-image: linear-gradient( rgba(0,0,0,0.3), rgba(0, 0, 0, 0.3) ), url("../images/big-leaf-bright-color-1029640.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
     .splash__header {
-      background-color: rgba(238, 238, 238, 0.9);
+      background-color: rgba(238, 238, 238, 0.47);
       border-radius: 6px;
-      font-size: 4.5em;
+      font-size: 3.8em;
       font-weight: 400;
-      height: 45%;
-      justify-content: center;
-      margin: 20% 3% 16% 3%;
+      // height: 45%;
+      // justify-content: center;
+      margin: auto;
+      display: block;
       text-align: center;
-      width: 100%;
+      // width: 100%;
     }
     .splash__span {
       font-style: italic;
       font-weight: 700;
     }
-    .splash__enter {
-      background-color: rgba(238, 238, 238, 0.8);
-      font-size: 1.5em;
-      height: 60px;
-      position: absolute;
-      top: 60%;
-      width: 400px;
-    }
 }
 
-#customer_login {
-  width: 40%;
-  float: left;
-}
-
+#customer_login,
 #manager_login {
-  width: 40%;
-  float: right;
+  align-items: center;
+  background-color:  #eeeeee91;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5em;
+  margin: 0% 3% 2% 3%;
+  padding: 0% 2% 1% 4%;
+  width: 23%;
 }
 
 header {
@@ -134,10 +131,10 @@ article {
   background-color: rgba(238, 238, 238, 1);
   border-radius: 20px;
   font-size: 1.5em;
-  height: 58%;
+  height: 65%;
   padding: 1% 2% 0 4%;
   position: absolute;
-  top: 43%;
+  top: 25%;
   width: 76%;
 }
 
