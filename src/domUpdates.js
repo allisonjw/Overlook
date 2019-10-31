@@ -2,15 +2,20 @@ import $ from 'jquery';
 
 const domUpdates = {
 
-  pageLoadHandler() {
-    // $('main').hide();
-    $('.section__guest').hide();
-    $('.section__bookings').hide();
-    $('.header__guest-name').hide();
-    $('.splash-container').fadeOut(3000);
-    $('main').fadeIn(3000);
-    $('header').fadeIn(3000);
-  },
+  // mngrPageLoadHandler() {
+  //   // $('.splash-container').fadeOut(3000);
+  //   // $('main').fadeIn(3000);
+  //   // $('header').fadeIn(3000);
+  //   $('.section-main').show()
+  //   $('.section__guest').hide();
+  //   $('.section__bookings').hide();
+  //   $('.header__guest-name').hide();
+  // },
+
+  // cstmrPageLoadHander() {
+  //   $('main').fadeIn(3000);
+  //   $('header').fadeIn(3000);
+  // },
 
   displayDate(today) {
     $('.main__date').text(today);
@@ -72,12 +77,6 @@ const domUpdates = {
     // $('.header__guest-name').hide();
   },
 
-  roomServicesBtnHandler() {
-    $('.section__main').hide();
-    $('.section__bookings').hide();
-    $('.section__guest').hide();
-    // $('.header__guest-name').hide();
-  },
 }
 
 export default domUpdates;

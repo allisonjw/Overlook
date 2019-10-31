@@ -2,9 +2,9 @@ import $ from 'jquery';
 import domUpdates from './domUpdates.js';
 import './css/base.scss';
 
-import './images/turing-logo.png'
+import './images/big-leaf-bright-color-1029640.jpg';
+import './images/beach-deck-dock-247447.jpg';
 
-console.log('This is the JavaScript entry file - your code begins here.');
 
 const findCurrentDate = () => {
   let today = new Date();
@@ -14,32 +14,13 @@ const findCurrentDate = () => {
   return `${year}/${month}/${day}`;
 };
 
-// let username = $('#customer__username')
-
-// $('.login__btn').on('click', () => {
-//   if (username === 'manager') {
-//     window.navigate = "./manager.html";
-//   } else {
-//     window.navigate = "./customer.html";
-//   }
-// });
-
 $('.manager__login--btn').on('click', () => {
-  window.location = './manager.html';
+  window.location = "./manager.html";
+//   domUpdates.mngrPageLoadHandler();
 });
 
 $('.customer__login--btn').on('click', () => {
-  window.location = './customer.html';
-});
-
-$('main').hide()
-$('header').hide()
-  
-$('.login__btn').click(()  => {
-  domUpdates.pageLoadHandler();
-  $('.splash__container').hide();
-  $('main').show();
-  $('header').show()
+  window.location = "./customer.html";
 });
 
 $('.main__btn').click(()  => {
