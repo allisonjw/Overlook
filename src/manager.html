@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+  <title>Outlook Resort</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" src="css/normalize.scss">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <h2 class="header__title">Overlook Resort and <span class="header__span">Spa</span></h2>
+    <p class="header__guest-name">Current Guest:<span id="header__current-guest"></span></p>
+    <nav>
+      <button class="main__btn" id="main">Main</button>
+      <button class="guest__btn" id="guest">Guest</button>
+      <button class="bookings__btn" id="rooms">Bookings</button>
+    </nav>
+  </header>
+  <main>
+  <section class="section__main">
+      <article class="article__main">
+        <h3>Resort's Stats:</h3>
+        <h4>Date:<span class="main__date"></span></h4>
+        <h4>Percentage of Rooms Occupied:<span class="main__room-percent"></span>%</h4>
+        <h4>Rooms Available:<span class="main__rooms-available"></span></h4>
+        <h4>Total Revenue:<span class="main__revenue"></span></h4>
+      </article>
+    </section>
+    <section class="section__guest">
+      <article class="article__guest">
+          <div class="article__input-container" id="article__input-container-search">
+            <label>Search for a guest</label>
+          <form class="div__form--search">
+            <select class="article__input article__input-search" name="guest"></select>
+            <button class="search__guest--btn div__guest--btn">Submit</button>
+          </form>  
+            <p class="guest__search--error" hidden>Sorry, we don't have <span class="span__errorName"></span>in our system</p>
+          </div>
+          <div class="article__input-container" id="article__input-container-add">
+            <label>Create a new guest</label>
+          <form class="div__form--add">
+            <input class="article__input article__input-add" type="text" name="name" placeholder="Add New guest">
+            <button class="add__guest--btn div__guest--btn">Submit</button>
+          </form>
+          </div>
+      </article>
+    </section>
+    <section class="section__bookings">
+      <article class="article__bookings">
+        <h4>The most popular booking date is<span class="popular__booking--date"></span></h4>
+        <h4>Date with most room available<span class="most__rooms--avail"></span></h4>
+        <div class="article__input-container" id="article__input-container-add">
+            <label>Select Search Button</label>
+            <button type="button" class="article__input junior-suite_option">Junior Suite</button>
+            <button type="button" class="article__input suite_option">Suite</button>
+            <button type="button" class="article__input residential-suite_option">Residential Suite</button>
+            <button type="button" class="article__input single-room_option">Single Room</button>
+            <button type="button" class="article__input all-room_options">All Available Rooms</button>
+            <input class="article__input article__input-add" id="article__input-add" type="text" placeholder="yyyy/mm/dd">
+            <button class="add__guest--btn div__guest--btn">Submit</button>
+          </div>
+      </article>
+    </section>
+    <!-- <section class="section__roomServices">
+      <article class="article__roomServices">
+        <h4>Room Services</h4>
+        <div class="article__input-container" id="article__input-container-add">
+            <label>Search Orders By Date</label>
+            <input class="article__input article__input-add" id="article__input-add" type="text" placeholder="yyyy/mm/dd">
+            <button class="add__guest--btn div__guest--btn">Submit</button>
+          </div>
+          <table class="selected-orders">
+              <tr>
+                <th>Date</th>
+                <th>Food Item</th>
+                <th>Total Cost</th>
+              </tr>
+          </table>      
+      </article>
+    </section> -->
+  </main>
+    <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
+  </body>
+</html>
