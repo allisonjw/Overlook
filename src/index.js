@@ -24,6 +24,14 @@ const findCurrentDate = () => {
 //   }
 // });
 
+$('.manager__login--btn').on('click', () => {
+  window.location = './manager.html';
+});
+
+$('.customer__login--btn').on('click', () => {
+  window.location = './customer.html';
+});
+
 $('main').hide()
 $('header').hide()
   

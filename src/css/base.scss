@@ -21,16 +21,25 @@ span {
       border-radius: 6px;
       font-size: 3.8em;
       font-weight: 400;
-      // height: 45%;
-      // justify-content: center;
-      margin: auto;
-      display: block;
       text-align: center;
-      // width: 100%;
     }
     .splash__span {
       font-style: italic;
       font-weight: 700;
+    }
+}
+
+.login__forms {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+    form input {
+      height: 19px;
+      font-size: .7em;
+    }
+    .customer__login--btn,
+    .manager__login--btn {
+      width: auto;
     }
 }
 
@@ -115,11 +124,10 @@ button {
   border: 12px solid $bookings-color;
 }
 
-
 .section__main,
 .section__guest,
 .section__bookings {
-  // background-image: linear-gradient( rgba(0,0,0,0.3), rgba(0, 0, 0, 0.3) ), url("");
+  background-image: linear-gradient( rgba(0,0,0,0.3), rgba(0, 0, 0, 0.3) ), url("../images/beach-deck-dock-247447.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
