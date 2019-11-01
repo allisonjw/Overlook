@@ -60,7 +60,7 @@ header {
   height: 50%;
   width: 100%;
   background-color: grey;
-  h2 {
+  h1 {
     font-size: 3em;
     font-weight: 400;
     margin: 0;
@@ -98,6 +98,7 @@ button {
 }
   
 .main__btn:hover,
+.newRes__btn:hover,
 .main__btn-clicked {
   background: $main-color;
 }
@@ -107,6 +108,7 @@ button {
 }
 
 .guest__btn:hover,
+.resHistory__btn:hover,
 .guest__btn-clicked {
   background-color: $guest-color;
 }
@@ -116,6 +118,7 @@ button {
 }
 
 .bookings__btn:hover,
+.roomsTotal__btn:hover,
 .bookings__btn-clicked {
   background-color: $bookings-color
 }
@@ -126,7 +129,10 @@ button {
 
 .section__main,
 .section__guest,
-.section__bookings {
+.section__bookings,
+.section__customer-newReservations,
+.section__customer-resHistory,
+.section__customer-roomsTotal {
   background-image: linear-gradient( rgba(0,0,0,0.3), rgba(0, 0, 0, 0.3) ), url("../images/beach-deck-dock-247447.jpg");
   background-repeat: no-repeat;
   background-size: cover;
