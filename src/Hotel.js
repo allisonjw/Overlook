@@ -5,6 +5,18 @@ class Hotel {
     this.bookingsData = bookingsData;
 
   }
+
+//   findRoomsAvailableToday(today) {
+
+//   }
+
+//   getTotalRevenueToday(today) {
+
+//   }
+
+//   getPercentOfRoomsOccupied(today) {
+
+//   }
 }
     
 export default Hotel;

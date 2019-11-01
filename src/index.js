@@ -12,13 +12,13 @@ Promise.all([
   fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users').then(response => response.json()),
   fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms').then(response => response.json()),
   fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings').then(response => response.json()),
-]).then(data => hotel = new Hotel(data[0].users, data[1].bookings, data[2].rooms))
+]).then(data => hotel = new Hotel(data[0].users, data[1].rooms, data[2].bookings))
   .then(data => openHotel(findCurrentDate()))
   .then(data => console.log(hotel))
   .catch(error => console.log(error));
 
 const openHotel = (today) => {
-//   domUpdates.displayDate(findCurrentDate())
+  domUpdates.displayDate(findCurrentDate())
 //   domUpdates.displayPercentRooms(hotel.getPercentOfRoomsOccupied(today));
 //   domUpdates.displayAvailability(hotel.findRoomsAvailableToday(today));
 //   domUpdates.displayRevenue(hotel.getTotalRevenueToday(today));

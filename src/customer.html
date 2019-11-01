@@ -18,13 +18,33 @@
   </header>
   <main>
     <section class="section__customer-newReservations">
-
+      <article>
+          <h2>Book a Room</h2>
+          <label>Select a Date</label>
+          <form class="div__form--search">
+            <select class="article__input article__input-search" name="date"></select>
+            <button class="search__date--btn div__date--btn">Submit</button>
+          </form> 
+          <label>Filter By Room Type</label>
+          <form></form>
+            <select class="article__input article__input-filter" name="roomType"></select>
+            <button class="filter__date--btn div__date--btn">Filter</button>
+        </form>
+          <button class="book__room--btn div__date--btn">Book</button>
+          <p class="user__no-room--error" hidden>Sorry, it appears that we are all booked for the date you selected<span class="span__noRoomError-name"></span>. Please change your search and look again</p>
+      </article>
     </section>
     <section class="section__customer-resHistory">
-
+      <article>    
+        <h2>Your Booking History</h2>
+        <h3>Past Bookings:<span class="users__past-bookings"></span></h3>
+      </article>  
     </section>
     <section class="section__customer-roomsTotal"> 
-
+      <article>  
+        <h2>Your Total Amount Spent on Rooms</h2>
+        <h3>Past Bookings:<span class="users__bookings-total"></span></h3>
+      </article>
     </section>
   </main>
 </body>
