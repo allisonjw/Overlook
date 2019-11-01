@@ -1,5 +1,13 @@
 @import '_variables';
 
+%backgroundImgStyle {
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
 body {
   margin: 0;
   font-family: 'Roboto', sans-serif;
@@ -10,12 +18,8 @@ span {
 
 .splash__container {
   background-image: linear-gradient( rgba(0,0,0,0.3), rgba(0, 0, 0, 0.3) ), url("../images/big-leaf-bright-color-1029640.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100vh;
-  display: flex;
+  @extend %backgroundImgStyle;
   flex-direction: column;
-  justify-content: center;
     .splash__header {
       background-color: rgba(238, 238, 238, 0.47);
       border-radius: 6px;
@@ -50,7 +54,7 @@ span {
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  font-size: 1.5em;
+  font-size: $bodySizeSmall;
   margin: 0% 3% 2% 3%;
   padding: 0% 2% 1% 4%;
   width: 23%;
@@ -78,7 +82,7 @@ nav {
 
 .header__guest-name {
   bottom: 90%;
-  font-size: 1.5em;
+  font-size: $bodySizeSmall;
   left: 63%;
   position: absolute;
 }
@@ -100,51 +104,53 @@ button {
 .main__btn:hover,
 .newRes__btn:hover,
 .main__btn-clicked {
-  background: $main-color;
+  background: $manager__main-color;
 }
 
 .article__main {
-  border: 12px solid $main-color;
+  border: 8px solid $manager__main-color;
 }
 
 .guest__btn:hover,
 .resHistory__btn:hover,
 .guest__btn-clicked {
-  background-color: $guest-color;
+  background-color: $manager__guest-color;
 }
 
 .article__guest {
-  border: 12px solid $guest-color;
+  border: 8px solid $manager__guest-color;
 }
 
 .bookings__btn:hover,
 .roomsTotal__btn:hover,
 .bookings__btn-clicked {
-  background-color: $bookings-color
+  background-color: $manager__bookings-color
 }
 
 .article__bookings {
-  border: 12px solid $bookings-color;
+  border: 8px solid $manager__bookings-color;
+}
+
+.section__customer-newReservations,
+.section__customer-resHistory,
+.section__customer-roomsTotal {
+  background-image: linear-gradient( rgba(0,0,0,0.3), rgba(0, 0, 0, 0.3) ), url("../images/calm-clouds-exotic-297984.jpg");
+  @extend %backgroundImgStyle;
 }
 
 .section__main,
 .section__guest,
-.section__bookings,
-.section__customer-newReservations,
-.section__customer-resHistory,
-.section__customer-roomsTotal {
+.section__bookings {
   background-image: linear-gradient( rgba(0,0,0,0.3), rgba(0, 0, 0, 0.3) ), url("../images/beach-deck-dock-247447.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
+  @extend %backgroundImgStyle;
 }
 
+
+
 article {
-  background-color: rgba(238, 238, 238, 1);
+  background-color: rgba(238, 238, 238, .7);
   border-radius: 20px;
-  font-size: 1.5em;
+  font-size: $bodySizeSmall;
   height: 65%;
   padding: 1% 2% 0 4%;
   position: absolute;
