@@ -27,5 +27,29 @@ describe('Manager', () => {
     });
   });
 
+  describe('findRoomsAvailableToday', () => {
+    it('should return number of room available today', () => {
+      expect(manager.findRoomsAvailableToday('2019/11/18')).to.eql(14);
+    });
+  });
+
+  describe('findRoomsBookedTotal', () => {
+    it('should return total revenue of rooms booked today', () => {
+      expect(manager.findRoomsBookedTotal('2019/11/18')).to.equal(340.17);
+    });
+  });
+ 
+  describe('getTotalRevenueToday', () => {
+    it('should return total revenue for today', () => {
+      expect(manager.getTotalRevenueToday('2019/11/18')).to.equal(340);
+    });
+  });
+
+  describe('getPercentOfRoomsOccupied', () => {
+    it('should return percent of rooms occupied for today', () => {
+      expect(manager.getPercentOfRoomsOccupied('2019/11/18')).to.equal(7)
+    });
+  });
+
 
 });

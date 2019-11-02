@@ -10,6 +10,10 @@ class Hotel {
     return this.usersData.find(usersData => usersData.id === id);
   }
 
+  findRoomsBooked(id) {
+    return this.bookingsData.filter(bookingsData => bookingsData.userID === id);
+  }
+
 
 }
     

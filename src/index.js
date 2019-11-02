@@ -16,7 +16,7 @@ let bookingsData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/boo
 
 let hotel, users, manager, rooms, bookings;
 
-$('.customer__login--btn', '.manager__login--btn').on('click', (e) => {
+$('.customer__login--btn').on('click', (e) => {
   e.preventDefault();
   currentUserID = parseInt($('.customer__username').val());
   hotel = new Hotel(usersData, roomsData, bookingsData, currentUserID);

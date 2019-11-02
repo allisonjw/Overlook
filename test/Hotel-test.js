@@ -27,5 +27,17 @@ describe('Hotel', () => {
     });
   });
 
+  describe('findRoomsBooked', () => {
+    it('should be able to search through all guest data', () => {
+      expect(hotel.findRoomsBooked(1)).to.eql([{
+        id: 1572293130160,
+        userID: 1,
+        date: '2019/11/18',
+        roomNumber: 5,
+        roomServiceCharges: []
+      }])
+    });
+  });
+
 
 });
