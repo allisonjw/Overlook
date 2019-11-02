@@ -2,6 +2,9 @@ import $ from 'jquery';
 import domUpdates from './domUpdates.js';
 import './css/base.scss';
 import Hotel from './Hotel';
+import Manager from '../src/Manager';
+import Users from '../src/Users';
+
 
 import './images/big-leaf-bright-color-1029640.jpg';
 import './images/beach-deck-dock-247447.jpg';
@@ -14,16 +17,16 @@ let roomsData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/
 
 let bookingsData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings').then(response => response.json()).then(json => json.bookings);
 
-let hotel, users, manager, rooms, bookings;
+let hotel, users, manager;
 
-$('.customer__login--btn').on('click', (e) => {
+$('.customer__login--btn').click((e) => {
   e.preventDefault();
   currentUserID = parseInt($('.customer__username').val());
   hotel = new Hotel(usersData, roomsData, bookingsData, currentUserID);
   users = new Users(roomsData, bookingsData, currentUserID);
   manager = new Manager(usersData, roomsData, bookingsData, currentUserID);
-  rooms = new Rooms(roomsData, currentUserID);
-  bookings = new Bookings(bookingsData, currentUserID);
+//   rooms = new Rooms(roomsData, currentUserID);
+//   bookings = new Bookings(bookingsData, currentUserID);
   openHotel()
 });
 
@@ -37,12 +40,10 @@ Promise.all([usersData, roomsData, bookingsData])
 
 const openHotel = (today) => {
   domUpdates.displayDate(findCurrentDate())
-//   domUpdates.displayPercentRooms(hotel.getPercentOfRoomsOccupied(today));
-//   domUpdates.displayAvailability(hotel.findRoomsAvailableToday(today));
-//   domUpdates.displayRevenue(hotel.getTotalRevenueToday(today));
-//   domUpdates.displayMostPopularDate(hotel.getMostPopularBookingDate());
-//   domUpdates.displayLeastPopularDate(hotel.getLeastPopularBookingDate());
-//   domUpdates.displayGuestList(hotel.guest)
+  domUpdates.displayPercentRooms(manager.getPercentOfRoomsOccupied(today));
+  domUpdates.displayAvailability(manager.findRoomsAvailableToday(today));
+  domUpdates.displayRevenue(manager.getTotalRevenueToday(today));
+  domUpdates.displayGuestList(manager.guest)
 }
 
 const findCurrentDate = () => {
@@ -53,14 +54,18 @@ const findCurrentDate = () => {
   return `${year}/${month}/${day}`;
 };
 
-$('.manager__login--btn').on('click', () => {
+$('.manager__login--btn').click(() => {
   window.location = "./manager.html";
-//   domUpdates.mngrPageLoadHandler();
+  $('.section__main').show();
+  $('.section__guest').hide();
+  $('.section__bookings').hide();
+  $('.header__guest-name').hide();
+  domUpdates.mngrPageLoadHandler();
 });
 
-$('.customer__login--btn').on('click', () => {
+$('.customer__login--btn').click(() => {
   window.location = "./customer.html";
-  //   domUpdates.cstmrPageLoadHandler();
+  domUpdates.cstmrPageLoadHandler();
 
 });
 
@@ -104,10 +109,15 @@ $('.add__guest--btn').click((e) => {
   handleGuestInfo(newGuest)
 });
 
+const handleGuestInfo = (guestName) => {
+  manager.getCustomer(guestName);
+};
+
 $('.logout__btn').click(() => {
   document.location.reload();
 });
+
+
+
+
   
-// const handleGuestInfo = (guestName) => {
-//   hotel.findCustomer(guestName);
-// }

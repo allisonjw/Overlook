@@ -1,3 +1,5 @@
+import domUpdates from './domUpdates.js';
+
 class Hotel {
   constructor(usersData, roomsData, bookingsData, id) {
     this.usersData = usersData;

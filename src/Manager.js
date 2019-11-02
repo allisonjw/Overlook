@@ -1,4 +1,6 @@
+import domUpdates from './domUpdates.js';
 import Hotel from '../src/Hotel';
+import Users from '../src/Users';
 
 class Manager extends Hotel {
   constructor(usersData, roomsData, bookingsData, id, today) {
@@ -10,7 +12,7 @@ class Manager extends Hotel {
     this.today = today;
   }
 
-  findCustomer(id = this.id) {
+  findCustomerById(id = this.id) {
     return this.usersData.find(usersData => usersData.id === id)
   }
   
@@ -38,6 +40,18 @@ class Manager extends Hotel {
   getPercentOfRoomsOccupied(today) {
     let percent = this.bookingsData.filter(booking => booking.date === today).length / this.roomsData.length * 100
     return parseFloat(percent.toFixed())
+  }
+
+  filterCustomerByName(name) {
+    return this.usersData.filter(usersData => usersData.name === name);
+  }
+
+  getCustomer(name) {
+    if (this.filterCustomerByName(name)) {
+      this.users = new Users(this.filterCustomerByName(name).id, name);
+    } else {
+      domUpdates.displayGetError()
+    }
   }
 }
       

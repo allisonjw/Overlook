@@ -5,6 +5,9 @@ import usersData from '../test-data/users-data.js';
 import roomsData from '../test-data/rooms-data.js';
 import bookingsData from '../test-data/bookings-data.js';
 
+// chai.use(spies);
+// chai.spy.on(domUpdates, ['displayPercentRooms', 'displayAvailability', 'displayRevenue'], () => {});
+
 describe('Manager', () => {
 
   let manager;
@@ -21,9 +24,9 @@ describe('Manager', () => {
     expect(manager).to.be.an.instanceof(Manager);
   });
 
-  describe('findCustomer', () => {
+  describe('findCustomerById', () => {
     it('should be able to search through all guest data', () => {
-      expect(manager.findCustomer(1)).to.eql({ id: 1, name: 'Leatha Ullrich' })
+      expect(manager.findCustomerById(1)).to.eql({ id: 1, name: 'Leatha Ullrich' })
     });
   });
 
@@ -48,6 +51,12 @@ describe('Manager', () => {
   describe('getPercentOfRoomsOccupied', () => {
     it('should return percent of rooms occupied for today', () => {
       expect(manager.getPercentOfRoomsOccupied('2019/11/18')).to.equal(7)
+    });
+  });
+
+  describe('filterCustomerByName', () => {
+    it('should be able to search through all guest data', () => {
+      expect(manager.filterCustomerByName('Leatha Ullrich')).to.eql([{ id: 1, name: 'Leatha Ullrich' }])
     });
   });
 

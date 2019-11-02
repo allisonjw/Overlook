@@ -2,20 +2,18 @@ import $ from 'jquery';
 
 const domUpdates = {
 
-  // mngrPageLoadHandler() {
-  //   // $('.splash-container').fadeOut(3000);
-  //   // $('main').fadeIn(3000);
-  //   // $('header').fadeIn(3000);
-  //   $('.section-main').show()
-  //   $('.section__guest').hide();
-  //   $('.section__bookings').hide();
-  //   $('.header__guest-name').hide();
-  // },
+  mngrPageLoadHandler() {
+    $('.section__main').show()
+    $('.section__guest').hide();
+    $('.section__bookings').hide();
+    $('.header__guest-name').hide();
+  },
 
-  // cstmrPageLoadHander() {
-  //   $('main').fadeIn(3000);
-  //   $('header').fadeIn(3000);
-  // },
+  cstmrPageLoadHander() {
+    $('.section__customer-newReservations').show();
+    $('.section__customer-resHistory').hide();
+    $('.section__customer-roomsTotal').hide();
+  },
 
   displayDate(today) {
     $('.main__date').text(today);
@@ -45,9 +43,9 @@ const domUpdates = {
     $('#header__current-guest').text(name);
   },
   
-  displayGuestList(guestData) {
-    guestData.forEach(guest => {
-      $('.article__input-search').append(`<option value="${guest.name}">${guest.name}</option>`);
+  displayGuestList(usersData) {
+    usersData.forEach(user => {
+      $('.article__input-search').append(`<option value="${user.name}">${user.name}</option>`);
     })
   },
 
