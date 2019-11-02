@@ -6,15 +6,33 @@ import Hotel from './Hotel';
 import './images/big-leaf-bright-color-1029640.jpg';
 import './images/beach-deck-dock-247447.jpg';
 
-let hotel;
+let currentUserID;
 
-Promise.all([
-  fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users').then(response => response.json()),
-  fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms').then(response => response.json()),
-  fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings').then(response => response.json()),
-]).then(data => hotel = new Hotel(data[0].users, data[1].rooms, data[2].bookings))
-  .then(data => openHotel(findCurrentDate()))
-  .then(data => console.log(hotel))
+let usersData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users').then(response => response.json()).then(json => json.users);
+
+let roomsData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms').then(response => response.json()).then(json => json.rooms);
+
+let bookingsData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings').then(response => response.json()).then(json => json.bookings);
+
+let hotel, users, manager, rooms, bookings;
+
+$('.customer__login--btn', '.manager__login--btn').on('click', (e) => {
+  e.preventDefault();
+  currentUserID = parseInt($('.customer__username').val());
+  hotel = new Hotel(usersData, roomsData, bookingsData, currentUserID);
+  users = new Users(roomsData, bookingsData, currentUserID);
+  manager = new Manager(usersData, roomsData, bookingsData, currentUserID);
+  rooms = new Rooms(roomsData, currentUserID);
+  bookings = new Bookings(bookingsData, currentUserID);
+  openHotel()
+});
+
+Promise.all([usersData, roomsData, bookingsData])
+  .then(data => {
+    usersData = data[0];
+    roomsData = data[1];
+    bookingsData = data[2];
+  })
   .catch(error => console.log(error));
 
 const openHotel = (today) => {
@@ -84,6 +102,10 @@ $('.add__guest--btn').click((e) => {
   let newGuestName = $('.article__input-add').val();
   domUpdates.displayGuestName(newGuestName);
   handleGuestInfo(newGuest)
+});
+
+$('.logout__btn').click(() => {
+  document.location.reload();
 });
   
 // const handleGuestInfo = (guestName) => {

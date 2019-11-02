@@ -100,6 +100,10 @@ button {
       transition: all .1s ease-in-out;
     }
 }
+
+.logout__btn {
+  float: right;
+}
   
 .main__btn:hover,
 .newRes__btn:hover,
