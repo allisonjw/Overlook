@@ -10,7 +10,7 @@ describe('Hotel', () => {
   let hotel;
 
   beforeEach(() => {
-    hotel = new Hotel(usersData, roomsData, bookingsData);
+    hotel = new Hotel(usersData, roomsData, bookingsData, 1);
   })
 
   it('should be a function', () => {
@@ -21,9 +21,9 @@ describe('Hotel', () => {
     expect(hotel).to.be.an.instanceof(Hotel);
   });
 
-  describe('filterCustomerData', () => {
+  describe('findCustomerData', () => {
     it('should be able to search through all guest data', () => {
-      expect(hotel.filterCustomerData('Matilde Larson')).to.eql([{ id: 1, name: 'Matilde Larson' }])
+      expect(hotel.findCustomerData(1)).to.eql({ id: 1, name: 'Leatha Ullrich' })
     });
   });
 

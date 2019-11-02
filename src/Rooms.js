@@ -1,6 +1,7 @@
 class Rooms {
-  constructor(roomsData) {
+  constructor(roomsData, id) {
     this.roomsData = roomsData;
+    this.id = id;
   }
 }
   

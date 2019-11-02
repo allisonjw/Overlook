@@ -1,22 +1,16 @@
 class Hotel {
-  constructor(usersData, roomsData, bookingsData) {
+  constructor(usersData, roomsData, bookingsData, id) {
     this.usersData = usersData;
     this.roomsData = roomsData;
     this.bookingsData = bookingsData;
-
+    this.user = this.findCustomerData(id);
   }
 
-//   findRoomsAvailableToday(today) {
+  findCustomerData(id) {
+    return this.usersData.find(usersData => usersData.id === id);
+  }
 
-//   }
 
-//   getTotalRevenueToday(today) {
-
-//   }
-
-//   getPercentOfRoomsOccupied(today) {
-
-//   }
 }
     
 export default Hotel;

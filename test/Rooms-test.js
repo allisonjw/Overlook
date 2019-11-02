@@ -9,7 +9,7 @@ describe('Rooms', () => {
   let rooms;
 
   beforeEach(() => {
-    rooms = new Rooms(roomsData);
+    rooms = new Rooms(roomsData, 1);
   })
 
   it('should be an instance of Rooms', () => {

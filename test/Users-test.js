@@ -8,7 +8,7 @@ describe('Users', () => {
   let users;
 
   beforeEach(() => {
-    users = new Users(usersData);
+    users = new Users(usersData, 1);
   })
 
   it('should be an instance of Users', () => {

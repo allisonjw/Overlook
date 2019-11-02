@@ -1,6 +1,7 @@
 class Users {
-  constructor(usersData) {
+  constructor(usersData, id) {
     this.usersData = usersData;
+    this.id;
   }
 
   // roomsAvailableForDate() {
