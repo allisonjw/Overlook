@@ -1,10 +1,8 @@
-import Hotel from '../src/Hotel';
 import Guest from './Guest';
 import domUpdates from './domUpdates.js';
 
 class Manager {
   constructor(usersData, bookingsData, roomsData, id, today) {
-    // super(usersData, roomsData, bookingsData, id);
     this.guest = usersData;
     this.bookings = bookingsData;
     this.rooms = roomsData;
