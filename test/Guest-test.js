@@ -36,8 +36,8 @@ describe('Guest', () => {
   });
 
   describe('totalGuestRoomsSpent', () => {
-    it.skip('should be show the total amount the guest has spent on rooms', () => {
-      expect(guest.totalGuestRoomsSpent(1)).to.equal()
+    it('should be show the total amount the guest has spent on rooms', () => {
+      expect(guest.totalGuestRoomsSpent(1)).to.equal(340.17)
     });
   });
   
