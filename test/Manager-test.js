@@ -13,7 +13,7 @@ describe('Manager', () => {
   let manager;
 
   beforeEach(() => {
-    manager = new Manager(usersData, roomsData, bookingsData, 1);
+    manager = new Manager(usersData, bookingsData, roomsData, 1);
   })
 
   it('should be a function', () => {
@@ -24,9 +24,9 @@ describe('Manager', () => {
     expect(manager).to.be.an.instanceof(Manager);
   });
 
-  describe('findCustomerById', () => {
+  describe('findGuestById', () => {
     it('should be able to search through all guest data', () => {
-      expect(manager.findCustomerById(1)).to.eql({ id: 1, name: 'Leatha Ullrich' })
+      expect(manager.findGuestById(1)).to.eql({ id: 1, name: 'Leatha Ullrich' })
     });
   });
 
@@ -54,9 +54,9 @@ describe('Manager', () => {
     });
   });
 
-  describe('filterCustomerByName', () => {
+  describe('filterGuestByName', () => {
     it('should be able to search through all guest data', () => {
-      expect(manager.filterCustomerByName('Leatha Ullrich')).to.eql([{ id: 1, name: 'Leatha Ullrich' }])
+      expect(manager.filterGuestByName('Leatha Ullrich')).to.eql([{ id: 1, name: 'Leatha Ullrich' }])
     });
   });
 

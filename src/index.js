@@ -1,45 +1,34 @@
 import $ from 'jquery';
-import domUpdates from './domUpdates.js';
 import './css/base.scss';
 import Hotel from './Hotel';
 import Manager from '../src/Manager';
-import Users from '../src/Users';
+import Guest from '../src/Guest';
+import domUpdates from './domUpdates.js';
 
 
 import './images/big-leaf-bright-color-1029640.jpg';
 import './images/beach-deck-dock-247447.jpg';
 
-let currentUserID;
+let currentUserID
+let manager
 
-let usersData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users').then(response => response.json()).then(json => json.users);
 
-let roomsData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms').then(response => response.json()).then(json => json.rooms);
-
-let bookingsData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings').then(response => response.json()).then(json => json.bookings);
-
-let hotel, users, manager;
+Promise.all([
+  fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users').then(response => response.json()),
+  fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings').then(response => response.json()),
+  fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms').then(response => response.json()),
+]).then(data => manager = new Manager(data[0].users, data[1].bookings, data[2].rooms))
+  .then(data => openHotel(findCurrentDate()))
+  .then(data => console.log(manager))
+  .catch(error => console.log(error));
 
 $('.customer__login--btn').click((e) => {
   e.preventDefault();
   currentUserID = parseInt($('.customer__username').val());
-  hotel = new Hotel(usersData, roomsData, bookingsData, currentUserID);
-  users = new Users(roomsData, bookingsData, currentUserID);
-  manager = new Manager(usersData, roomsData, bookingsData, currentUserID);
-//   rooms = new Rooms(roomsData, currentUserID);
-//   bookings = new Bookings(bookingsData, currentUserID);
-  openHotel()
 });
 
-Promise.all([usersData, roomsData, bookingsData])
-  .then(data => {
-    usersData = data[0];
-    roomsData = data[1];
-    bookingsData = data[2];
-  })
-  .catch(error => console.log(error));
-
 const openHotel = (today) => {
-  domUpdates.displayDate(findCurrentDate())
+  domUpdates.displayDate(findCurrentDate(today))
   domUpdates.displayPercentRooms(manager.getPercentOfRoomsOccupied(today));
   domUpdates.displayAvailability(manager.findRoomsAvailableToday(today));
   domUpdates.displayRevenue(manager.getTotalRevenueToday(today));
@@ -54,19 +43,23 @@ const findCurrentDate = () => {
   return `${year}/${month}/${day}`;
 };
 
+$('.customer__login--btn').click((e) => {
+  e.preventDefault();
+  currentUserID = parseInt($('.customer__username').val());
+});
+
+$('.section__guest').hide();
+$('.section__bookings').hide();
+$('.header__guest-name').hide();
+$('.section__customer-resHistory').hide();
+$('.section__customer-roomsTotal').hide();
+
 $('.manager__login--btn').click(() => {
   window.location = "./manager.html";
-  $('.section__main').show();
-  $('.section__guest').hide();
-  $('.section__bookings').hide();
-  $('.header__guest-name').hide();
-  domUpdates.mngrPageLoadHandler();
 });
 
 $('.customer__login--btn').click(() => {
   window.location = "./customer.html";
-  domUpdates.cstmrPageLoadHandler();
-
 });
 
 $('.main__btn').click(()  => {
@@ -110,8 +103,8 @@ $('.add__guest--btn').click((e) => {
 });
 
 const handleGuestInfo = (guestName) => {
-  manager.getCustomer(guestName);
-};
+  manager.findCustomer(guestName);
+}
 
 $('.logout__btn').click(() => {
   document.location.reload();

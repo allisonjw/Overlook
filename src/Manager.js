@@ -1,30 +1,30 @@
-import domUpdates from './domUpdates.js';
 import Hotel from '../src/Hotel';
-import Users from '../src/Users';
+import Guest from './Guest';
+import domUpdates from './domUpdates.js';
 
-class Manager extends Hotel {
-  constructor(usersData, roomsData, bookingsData, id, today) {
-    super(usersData, roomsData, bookingsData, id);
-    this.usersData = usersData;
-    this.roomsData = roomsData;
-    this.bookingsData = bookingsData;
+class Manager {
+  constructor(usersData, bookingsData, roomsData, id, today) {
+    // super(usersData, roomsData, bookingsData, id);
+    this.guest = usersData;
+    this.bookings = bookingsData;
+    this.rooms = roomsData;
     this.id = id;
     this.today = today;
   }
 
-  findCustomerById(id = this.id) {
-    return this.usersData.find(usersData => usersData.id === id)
+  findGuestById(id = this.id) {
+    return this.guest.find(guest => guest.id === id)
   }
   
   findRoomsAvailableToday(today) {
-    let roomsBooked = this.bookingsData.filter(booking => booking.date === today);
-    return this.roomsData.length - roomsBooked.length;
+    let roomsBooked = this.bookings.filter(booking => booking.date === today);
+    return this.rooms.length - roomsBooked.length;
   }
   
   findRoomsBookedTotal(today) {
-    let bookedRooms = this.bookingsData.filter(booking => booking.date === today)
+    let bookedRooms = this.bookings.filter(booking => booking.date === today)
     return bookedRooms.reduce((acc, bookedRoom) => {
-      this.roomsData.forEach((room) => {
+      this.rooms.forEach((room) => {
         if (room.number === bookedRoom.roomNumber) {
           return acc += room.costPerNight
         }
@@ -38,17 +38,17 @@ class Manager extends Hotel {
   }
 
   getPercentOfRoomsOccupied(today) {
-    let percent = this.bookingsData.filter(booking => booking.date === today).length / this.roomsData.length * 100
+    let percent = this.bookings.filter(booking => booking.date === today).length / this.rooms.length * 100
     return parseFloat(percent.toFixed())
   }
 
-  filterCustomerByName(name) {
-    return this.usersData.filter(usersData => usersData.name === name);
+  filterGuestByName(name) {
+    return this.guest.filter(guest => guest.name === name);
   }
 
-  getCustomer(name) {
-    if (this.filterCustomerByName(name)) {
-      this.users = new Users(this.filterCustomerByName(name).id, name);
+  getGuest(name) {
+    if (this.filterGuestByName(name)) {
+      this.guest = new Guest(this.filterGuestByName(name).id, name);
     } else {
       domUpdates.displayGetError()
     }
