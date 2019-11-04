@@ -11,48 +11,20 @@
   <section class="splash__container">
     <h1 class="splash__header">Welcome to Overlook Resort and <span class="splash__span">Spa</span></h1>
   <section class="login__forms">
-    <form id="customer_login">
-        <h2>Customer Login</h2>
-      <label for="customer__username">
+    <form id="login__form">
+        <h2>Login</h2>
+      <label for="username">
         Username:
-        <input type="text" name="username" id="customer__username" placeholder="Username" required min="1" max="10" pattern="[A-Za-z0-9]+"/>
+        <input type="text" name="username" id="username" placeholder="Username" required minlength="7" maxlength="10" size="15"/>
       </label>
-      <label for="customer__password">
+      <label for="password">
         Password:
-        <input  type="password" name="password" id="customer__password" placeholder="Customer Password" required min="1" max="12" pattern="[A-Za-z0-9]+"/>
+        <input  type="password" name="password" id="password" placeholder="Password" required minlength="5" maxlength="12" size="15"/>
       </label>
-      <button type="submit" class="customer__login--btn">Sign in</button>
-    </form>
-    <form id="manager_login">
-        <h2>Manager Login</h2>
-      <label for="manager__username">
-        Username:
-        <input type="text" name="username" id="manager__username" placeholder="Username" required min="1" max="7" pattern="[A-Za-z0-9]+"/>
-      </label>
-      <label for="manager__password">
-        Password:
-        <input type="password" name="password" id="manager__password" required min="1" max="12" placeholder="Manager Password" pattern="[A-Za-z0-9]+"/>
-      </label>
-      <button type="submit" class="manager__login--btn">Sign in</button>
+      <p class="hidden login__error">Please Enter a Valid ID and Password</p>
+      <button type="submit" class="login--btn">Sign in</button>
     </form>
   </section>
-  </section>    
-    <!-- <section class="section__roomServices">
-      <article class="article__roomServices">
-        <h4>Room Services</h4>
-        <div class="article__input-container" id="article__input-container-add">
-            <label>Search Orders By Date</label>
-            <input class="article__input article__input-add" id="article__input-add" type="text" placeholder="yyyy/mm/dd">
-            <button class="add__guest--btn div__guest--btn">Submit</button>
-          </div>
-          <table class="selected-orders">
-              <tr>
-                <th>Date</th>
-                <th>Food Item</th>
-                <th>Total Cost</th>
-              </tr>
-          </table>      
-      </article>
-    </section> -->
+  </section>   
   </body>
 </html>

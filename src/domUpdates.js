@@ -28,9 +28,8 @@ const domUpdates = {
     })
   },
 
-  displayGuestError() {
-    $('.article__input-search').val()
-    $('.guest__search--error').show();
+  displayLoginError() {
+    $('.login__error').addClass();
   },
 
   mainBtnHandler() {
@@ -53,21 +52,21 @@ const domUpdates = {
   },
 
   reservationBtnHandler() {
-    $('.section__customer-newReservations').show();
-    $('.section__customer-resHistory').hide();
-    $('.section__customer-roomsTotal').hide();
+    $('.section__guest-newReservations').show();
+    $('.section__guest-resHistory').hide();
+    $('.section__guest-roomsTotal').hide();
   },
 
   pastReservationHandler() {
-    $('.section__customer-newReservations').hide();
-    $('.section__customer-resHistory').show();
-    $('.section__customer-roomsTotal').hide();
+    $('.section__guest-newReservations').hide();
+    $('.section__guest-resHistory').show();
+    $('.section__guest-roomsTotal').hide();
   },
 
   totalSpentHandler() {
-    $('.section__customer-newReservations').hide();
-    $('.section__customer-resHistory').hide();
-    $('.section__customer-roomsTotal').show();
+    $('.section__guest-newReservations').hide();
+    $('.section__guest-resHistory').hide();
+    $('.section__guest-roomsTotal').show();
   },
 
 
@@ -76,18 +75,18 @@ const domUpdates = {
   },
 
   displayPastReservations(past) {
-    $('.users__past-bookings').text(past)
+    $('.users__past-bookings').append(`${past}`)
   },
 
   displayTotalRoomDollars(total) {
-    $('.section__customer-roomsTotal').append(`$${total}`)
+    $('.users__bookings-total').append(`$${total}`)
   },
 
   displayBookingsForGuest(bookingsData) {
-    $('.article__input-bookings').html('');
+    $('.list__guest--bookings').html('');
     bookingsData.forEach(booking => {
       let bookingsList = $(`<li><h6>Date: ${booking.date}<br> Room Number: ${booking.roomNumber}</h6></li>`);
-      $('.article__input-bookings').append(bookingsList);
+      $('.list__guest--bookings').append(bookingsList);
     });
   },
 
