@@ -282,8 +282,8 @@ describe('Guest', () => {
   });
 
   describe('newGuestBooking', () => {
-    it.skip('should be able make a new booking', () => {
-      expect(guest.newGuestBooking('2019/11/18')).to.eql([{}])
+    it('should be able make a new booking', () => {
+      expect(guest.newGuestBooking(1, '2019/11/03', 10)).to.eql([{ userID: 1, date: "2019/11/03", roomNumber: 10}])
     });
   });
 

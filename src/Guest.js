@@ -1,16 +1,18 @@
 import Manager from '../src/Manager';
+import domUpdates from './domUpdates.js';
+
 
 class Guest {
   constructor(bookingsData, roomsData, id, today) {
     // super(usersData, bookingsData, roomsData, id);
-    this.bookings = bookingsData;
+    this.bookingsData = bookingsData;
     this.rooms = roomsData;
     this.id = id;
     this.today = today;
   }
 
-  pastGuestRoomBookings(id, today) {
-    return this.bookings.filter(booking => booking.userID === id)
+  pastGuestRoomBookings(id) {
+    return this.bookingsData.filter(booking => booking.userID === id)
   }
 
   // futureGuestRoomBookings(id) {
@@ -29,7 +31,7 @@ class Guest {
   }
 
   roomsAvailableForDate(today) {
-    let roomNum = this.bookings.filter(booking => booking.date === today).map(room =>room.roomNumber)
+    let roomNum = this.bookingsData.filter(booking => booking.date === today).map(room =>room.roomNumber)
     return this.rooms.filter(room => !roomNum.includes(room.number))
   }
 

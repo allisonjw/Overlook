@@ -3,15 +3,17 @@ import domUpdates from './domUpdates.js';
 
 class Manager {
   constructor(usersData, bookingsData, roomsData, id, today) {
-    this.guest = usersData;
+    this.users = usersData;
+    this.guest = new Guest(bookingsData, roomsData)
     this.bookings = bookingsData;
     this.rooms = roomsData;
     this.id = id;
     this.today = today;
+    this.user = this.findGuestById(id)
   }
 
-  findGuestById(id = this.id) {
-    return this.guest.find(guest => guest.id === id)
+  findGuestById(id) {
+    return this.users.find(guest => guest.id === id)
   }
   
   findRoomsAvailableToday(today) {
@@ -41,7 +43,7 @@ class Manager {
   }
 
   filterGuestByName(name) {
-    return this.guest.filter(guest => guest.name === name);
+    return this.users.filter(guest => guest.name === name);
   }
 
   getGuest(name) {
