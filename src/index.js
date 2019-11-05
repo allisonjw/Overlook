@@ -10,7 +10,7 @@ import './images/big-leaf-bright-color-1029640.jpg';
 import './images/beach-deck-dock-247447.jpg';
 import './images/calm-clouds-exotic-297984.jpg';
 
-let guestID;
+let userID;
 let manager;
 
 Promise.all([
@@ -32,7 +32,10 @@ $('.login--btn').click((e) => {
   let password = $('#password').val();
   if (username === 'manager' && password === 'overlook2019') {
     window.location = './manager.html'
-  } else if (username.includes('customer') && password === 'overlook2019') {
+
+    userID = parseInt($('#username').val().slice(-2));
+    
+  } else if (username.includes('customer') && password === 'overlook2019' && userID > 0 && userID <= 50) {
     window.location = './customer.html'
   } else {
     $.trim(username, password) === " " 
@@ -47,7 +50,7 @@ const openHotel = (today) => {
   domUpdates.displayRevenue(manager.getTotalRevenueToday(today));
   domUpdates.displayGuestList(manager.users)
   $('.users__past-bookings').text(manager.guest.pastGuestRoomBookings());
-//   domUpdates.displayUpcomingReservations(manager.guest.futureGuestRoomBookings());
+  //   domUpdates.displayUpcomingReservations(manager.guest.futureGuestRoomBookings());
   domUpdates.displayTotalRoomDollars(manager.guest.totalGuestRoomsSpent());
 }
 
@@ -107,6 +110,21 @@ $('.newRes__btn').click(() => {
   $('.roomsTotal__btn').removeClass('roomsTotal__btn-clicked');
   domUpdates.reservationBtnHandler()
 });
+
+$('.book__room--btn').click((e) => {
+  fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', {
+    method: 'POST',
+    headers: {
+      'Content-Type': "application/json"
+    },
+    body: JSON.stringify({
+      userID: userID,
+      date: $('#book-date').val().replace('-', '/').replace('-', '/'),
+      roomNumber: parseInt(e.target.id)
+    })
+  }).catch(error => console.log('POST', error))
+  $(e.target).html('SUCCESS!')
+})
 
 $('.resHistory__btn').click(() => {
   $('.newRes__btn').removeClass('newRes__btn-clicked');
