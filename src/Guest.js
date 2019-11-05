@@ -3,12 +3,10 @@ import domUpdates from './domUpdates.js';
 
 
 class Guest {
-  constructor(bookingsData, roomsData, id, today) {
-    // super(usersData, bookingsData, roomsData, id);
+  constructor(bookingsData, roomsData, id) {
     this.bookingsData = bookingsData;
     this.rooms = roomsData;
     this.id = id;
-    this.today = today;
   }
 
   pastGuestRoomBookings(id) {

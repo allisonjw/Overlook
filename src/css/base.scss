@@ -201,6 +201,15 @@ article {
   width: 40%;
 }
 
+.article__bookRoom-container {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  padding: 16px;
+  width: 80%;
+}
+
 .article__input {
   font-size: .7em;
   height: 40px;
@@ -212,7 +221,6 @@ article {
 .delete__booking--btn,
 .search__guest--btn,
 .search__date--btn,
-.filter__date--btn,
 .book__room--btn {
   border-radius: 5px;
   height: 30px;

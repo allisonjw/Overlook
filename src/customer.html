@@ -20,29 +20,28 @@
   </header>
   <main>
     <section class="section__guest-newReservations">
-      <article class="article__guest-newReservations">
-        <h2>Book a Room</h2>
-        <div class="article__input-container">
-          <p>Select a Date</p>
-          <form class="div__form--search">
-            <input class="article__input article__date-search" type="text" placeholder="YYYY/MM/DD">
+
+      <article>
+        <div class="article__bookRoom-container">
+          <h2>Book a Room</h2>
+          <label>Select a Date</label>
+            <input class="article__input article__date-search" type="date" placeholder="YYYY/MM/DD" min="2019-07-30"
+            max="2019-12-31">
             <button class="search__date--btn">Submit</button>
-          </form> 
-        </div>
-        <div class="article__input-container">
-          <p>Filter By Room Type</p>
-          <form>
-            <select class="article__input article__type-filter" name="roomType">
+          <label>Filter By Room Type</label>
+            <select class="article__input article__room-type" disabled>
+
               <option value="residential suite">Residential Suite</option>
               <option value="junior suite">Junior Suite</option>
               <option value="suite">Suite</option>
               <option value="single room">Single Room</option>
             </select>
-            <button class="filter__date--btn">Filter</button>
-         </form>
+            <select class="article__input article__type-filter" disabled>
+              <option>Choose an available room</option>
+            </select>
           <button class="book__room--btn">Book</button>
-        </div>  
         <p class="user__no-room--error" hidden>Sorry, it appears that we are all booked for the date you selected<span class="span__noRoomError-name"></span>. Please change your search and look again</p>
+    </div>
       </article>
     </section>
     <section class="section__guest-resHistory">

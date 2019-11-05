@@ -1,19 +1,18 @@
+import Hotel from '../src/Hotel';
 import Guest from './Guest';
 import domUpdates from './domUpdates.js';
 
+
 class Manager {
-  constructor(usersData, bookingsData, roomsData, id, today) {
+  constructor(usersData, bookingsData, roomsData, id) {
     this.users = usersData;
-    this.guest = new Guest(bookingsData, roomsData)
     this.bookings = bookingsData;
     this.rooms = roomsData;
-    this.today = today;
-    this.user = this.findGuestById(id)
+    this.id = id;
+    this.guest = new Guest(bookingsData, roomsData)
+    // this.user = this.findGuestById(id)
+    this.currentGuest;
   }
-
-//   findGuestById(id) {
-//     return this.users.find(guest => guest.id === id)
-//   }
 
   findGuestById(id) {
     return this.users.find((user) => {
@@ -51,13 +50,22 @@ class Manager {
     return this.users.filter(guest => guest.name === name);
   }
   
-
   getGuest(name) {
     if (this.filterGuestByName(name)) {
       this.guest = new Guest(this.filterGuestByName(name).id, name);
     } else {
       domUpdates.displayGetError()
     }
+  }
+
+  getAPIFetchData(url, type) {
+    return fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        this.data = data[type];
+        return this.data
+      })
+      .catch(err => console.log(err));
   }
 }
       

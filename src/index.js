@@ -1,8 +1,8 @@
 import $ from 'jquery';
 import './css/base.scss';
-import Hotel from './Hotel';
+// import Hotel from './Hotel';
 import Manager from '../src/Manager';
-import Guest from '../src/Guest';
+// import Guest from '../src/Guest';
 import domUpdates from './domUpdates.js';
 
 
@@ -10,61 +10,75 @@ import './images/big-leaf-bright-color-1029640.jpg';
 import './images/beach-deck-dock-247447.jpg';
 import './images/calm-clouds-exotic-297984.jpg';
 
-let guestID;
+let userID;  //(WIP) -HOW TO GET USERID
 let manager;
 
-Promise.all([
-  fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users').then(response => response.json()),
-  fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings').then(response => response.json()),
-  fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms').then(response => response.json()),
-  
 
-]).then(data => manager = new Manager(data[0].users, data[1].bookings, data[2].rooms))
+let usersData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users').then(response => response.json());
+
+let bookingsData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings').then(response => response.json());
+
+let roomsData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms').then(response => response.json());
+  
+Promise.all([usersData, bookingsData, roomsData])
+  .then(data => manager = new Manager(data[0].users, data[1].bookings, data[2].rooms))
   .then(data => console.log(manager.guest))
   .then(data => console.log(manager))
-  .then(data => openHotel(findCurrentDate()))
+  .then(data => openHotel(domUpdates.findCurrentDate()))
   .catch(error => console.log(error))
  
-
+//LOGIN VALIDATION (WIP) - HOW TO GET USER ID
 $('.login--btn').click((e) => {
   e.preventDefault();
   let username = $('#username').val();
   let password = $('#password').val();
   if (username === 'manager' && password === 'overlook2019') {
     window.location = './manager.html'
+    
   } else if (username.includes('customer') && password === 'overlook2019') {
     window.location = './customer.html'
   } else {
     $.trim(username, password) === " " 
     $('.requirements').fadeIn(300);
   }
-})
+});
+
+
+let today = domUpdates.findCurrentDate();
+$('.main__date').html(domUpdates.displayCurrentDate());
 
 const openHotel = (today) => {
-  domUpdates.displayDate(findCurrentDate(today))
   domUpdates.displayPercentRooms(manager.getPercentOfRoomsOccupied(today));
   domUpdates.displayAvailability(manager.findRoomsAvailableToday(today));
   domUpdates.displayRevenue(manager.getTotalRevenueToday(today));
   domUpdates.displayGuestList(manager.users)
   $('.users__past-bookings').text(manager.guest.pastGuestRoomBookings());
-//   domUpdates.displayUpcomingReservations(manager.guest.futureGuestRoomBookings());
+  //   domUpdates.displayUpcomingReservations(manager.guest.futureGuestRoomBookings());
   domUpdates.displayTotalRoomDollars(manager.guest.totalGuestRoomsSpent());
 }
 
-const findCurrentDate = () => {
-  let today = new Date();
-  let day = String(today.getDate()).padStart(2, '0');
-  let month = String(today.getMonth() + 1).padStart(2, '0');
-  let year = today.getFullYear();
-  return `${year}/${month}/${day}`;
-};
+//POST METHOD (WIP)
+// $('.book__room--btn').click((e) => {
+//   fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': "application/json"
+//     },
+//     body: JSON.stringify({
+//       userID: userID, //NEED TO FIND A WAY TO GET USER ID
+//       date: $('.search__date--btn').val(),
+//       roomNumber: 
+//     })
+//   }).catch(error => console.log('POST', error))
+//   $(e.target).html('SUCCESS!')
+// });
+  
 
-$('.section__guest').hide();
-$('.section__bookings').hide();
-$('.header__guest-name').hide();
-$('.section__guest-resHistory').hide();
-$('.section__guest-roomsTotal').hide();
+//SECTIONS TO HIDE ON PAGE LOAD
+$('.section__guest, .section__bookings, .header__guest-name, .section__guest-resHistory, .section__guest-roomsTotal').hide();
 
+
+//EVENT HANDLERS FOR DOM
 $('.main__btn').click(()  => {
   $('.main__btn').addClass('main__btn-clicked');
   $('.bookings__btn').removeClass('bookings__btn-clicked');
@@ -86,21 +100,6 @@ $('.guest__btn').click(() => {
   domUpdates.guestBtnhandler()
 });
 
-$('.search__guest--btn').click((e) => {
-  e.preventDefault()
-  let id = $('.article__input-search').val;
-  let guestID = manager.findGuestById(id);
-  console.log(guestID)
-  let pickGuest = $('.article__input-search').val();
-  let name = $('.article__input-search option:selected').text()
-  let guestBookings = manager.guest.pastGuestRoomBookings(guestID)
-  let guestTotal = manager.guest.totalGuestRoomsSpent(guestID)
-  handleGuestInfo(pickGuest)
-  domUpdates.displayGuestName(name);
-  domUpdates.displayBookingsForGuest(guestBookings);
-  domUpdates.displayTotalRoomDollars(guestTotal)
-});
-
 $('.newRes__btn').click(() => {
   $('.newRes__btn').addClass('newRes__btn-clicked');
   $('.resHistory__btn').removeClass('resHistory__btn-clicked');
@@ -114,7 +113,7 @@ $('.resHistory__btn').click(() => {
   $('.roomsTotal__btn').removeClass('roomsTotal__btn-clicked');
   domUpdates.pastReservationHandler()
 });
-
+    
 $('.roomsTotal__btn').click(() => {
   $('.newRes__btn').removeClass('newRes__btn-clicked');
   $('.resHistory__btn').removeClass('resHistory__btn-clicked');
@@ -122,9 +121,65 @@ $('.roomsTotal__btn').click(() => {
   domUpdates.totalSpentHandler()
 });
 
+//DROP DOWN CALENDAR //SEARCH ROOMS
+$('.search__date--btn').on('click', () => {
+  let date = $('.article__date-search').val();
+  let fixedDate = domUpdates.fixDate(date);
+  let roomsAvailData = manager.guest.roomsAvailableForDate(fixedDate);
+  $('.article__room-type').attr('disabled', false);
+  domUpdates.displayAvailableRoomsByType(roomsAvailData);
+}); 
+
+
+// $('.search__date--btn').on('keypress', () => {
+//   $('article__room-type').attr('disabled', false);
+// });
+  
+$('.article__room-type').on('change', () => {
+  $('.article__type-filter').attr('disabled', false);
+  let type = $('.article__room-type').find(':selected').val();
+  let date = $('.article__date-search').val();
+  let roomsByDate = manager.guest.roomsAvailableForDate(date);
+  let roomsByType = manager.guest.filterRoomsByType(roomsByDate, type);
+    
+  domUpdates.displayAvailableRoomsByType(roomsByType, date);
+});
+  
+$('.article__type-filter').on('change', () => {
+  $('.book__room--btn').attr('disabled', false);
+});
+  
+$('.book__room--btn').on('click', () => {
+  $('.book__room--btn').attr('disabled', true);
+  let date = $('.article__type-filter').find(':selected').data('date');
+  let roomNumber = $('.article__type-filter').find(':selected').data('number')
+    
+  manager.guest.newGuestBooking(date, roomNumber);
+  domUpdates.displayNewBookingForGuest(date, roomNumber)
+});
+
+//SEARCH GUEST, SHOW IN HEAD AND DISPLAY RELEVANT INFO
+$('.search__guest--btn').click((e) => {
+  e.preventDefault()
+  let pickedGuest = $('.article__input-search').val;
+  let foundGuest = manager.filterGuestByName(pickedGuest)
+  manager.currentGuest = foundGuest;
+  console.log(manager.currentGuest)
+  let guestID = manager.findGuestById();
+  console.log(guestID)
+  let name = $('.article__input-search option:selected').text()
+  let bookings = manager.currentGuest.bookings
+  console.log(bookings)
+  let guestTotal = manager.guest.totalGuestRoomsSpent(guestID)
+  handleGuestInfo(pickedGuest)
+  domUpdates.displayGuestName(name);
+  domUpdates.displayBookingsForGuest(bookings);
+  domUpdates.displayTotalRoomDollars(guestTotal)
+});
+  
 const handleGuestInfo = (guestName) => {
   manager.filterGuestByName(guestName);
-}
+};
 
 $('.logout__btn').click(() => {
   window.location = './index.html';
