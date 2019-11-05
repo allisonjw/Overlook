@@ -13,7 +13,7 @@
     <p class="header__users-name">Welcome<span id="header__current-user"></span></p>
     <button class="logout__btn">Logout</button>
   <nav>
-    <button class="newRes__btn" id="newRes">Reservations</button>
+    <button class="newRes__btn" id="newRes">Make Reservations</button>
     <button class="resHistory__btn" id="resHistory">Reservation History</button>
     <button class="roomsTotal__btn" id="rooms">Rooms Total</button>
   </nav>
@@ -21,31 +21,39 @@
   <main>
     <section class="section__guest-newReservations">
       <article>
+        <div class="article__input-container">
           <h2>Book a Room</h2>
           <label>Select a Date</label>
           <form class="div__form--search">
             <select class="article__input article__date-search" name="date"></select>
-            <button class="search__date--btn div__date--btn">Submit</button>
+            <button class="search__date--btn">Submit</button>
           </form> 
+        </div>
+        <div class="article__input-container">
           <label>Filter By Room Type</label>
-          <form></form>
+          <form>
             <select class="article__input article__type-filter" name="roomType"></select>
-            <button class="filter__date--btn div__date--btn">Filter</button>
-        </form>
-          <button class="book__room--btn div__date--btn">Book</button>
-          <p class="user__no-room--error" hidden>Sorry, it appears that we are all booked for the date you selected<span class="span__noRoomError-name"></span>. Please change your search and look again</p>
+            <button class="filter__date--btn">Filter</button>
+         </form>
+          <button class="book__room--btn">Book</button>
+        </div>  
+        <p class="user__no-room--error" hidden>Sorry, it appears that we are all booked for the date you selected<span class="span__noRoomError-name"></span>. Please change your search and look again</p>
       </article>
     </section>
     <section class="section__guest-resHistory">
-      <article>    
-        <h2>Your Booking History</h2>
-        <h3>Past Bookings:<span class="users__past-bookings"></span></h3>
+      <article> 
+        <div class="article__input-container">   
+          <h2>Your Booking History</h2>
+          <h3>Past Bookings:<span class="users__past-bookings"></span></h3>
+        </div>  
       </article>  
     </section>
     <section class="section__guest-roomsTotal"> 
-      <article>  
-        <h2>Your Total Amount Spent on Rooms</h2>
-        <h3>Total Spent on Rooms:<span class="users__bookings-total"></span></h3>
+      <article>
+        <div class="article__input-container">  
+          <h2>Your Total Amount Spent on Rooms</h2>
+          <h3>Total Spent on Rooms:<span class="users__bookings-total"></span></h3>
+        </div>  
       </article>
     </section>
   </main>

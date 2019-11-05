@@ -15,13 +15,13 @@
         <h2>Login</h2>
       <label for="username">
         Username:
-        <input type="text" name="username" id="username" placeholder="Username" required minlength="7" maxlength="10" size="15"/>
+        <input type="text" name="username" id="username" placeholder="Username" required minlength="7" maxlength="10" size="15" pattern="[A-Za-z0-9]+"/>
       </label>
       <label for="password">
         Password:
-        <input  type="password" name="password" id="password" placeholder="Password" required minlength="5" maxlength="12" size="15"/>
+        <input  type="password" name="password" id="password" placeholder="Password" required minlength="5" maxlength="12" size="15" pattern="[A-Za-z0-9]+"/>
       </label>
-      <p class="hidden login__error">Please Enter a Valid ID and Password</p>
+      <p class="hidden requirements">Please Enter a Valid ID and Password</p>
       <button type="submit" class="login--btn">Sign in</button>
     </form>
   </section>

@@ -3,7 +3,7 @@ import $ from 'jquery';
 const domUpdates = {
 
   displayDate(today) {
-    $('.main__date').text(today);
+    $('.main__date').append(today);
   },
 
   displayPercentRooms(percentage) {
@@ -11,7 +11,7 @@ const domUpdates = {
   },
 
   displayAvailability(available) {
-    $('.main__rooms-available').text(available);
+    $('.main__rooms-available').append(available);
   },
 
   displayRevenue(revenue) {
@@ -19,7 +19,7 @@ const domUpdates = {
   },
   
   displayGuestName(name) {
-    $('#header__current-guest').text(name);
+    $('#header__current-guest').append(name);
   },
   
   displayGuestList(usersData) {
@@ -29,7 +29,7 @@ const domUpdates = {
   },
 
   displayLoginError() {
-    $('.login__error').addClass();
+    $('.requirements').addClass();
   },
 
   mainBtnHandler() {
@@ -68,7 +68,6 @@ const domUpdates = {
     $('.section__guest-resHistory').hide();
     $('.section__guest-roomsTotal').show();
   },
-
 
   displayUpcomingReservations() {
 

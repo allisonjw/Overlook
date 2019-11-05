@@ -35,7 +35,7 @@ $('.login--btn').click((e) => {
   } else if (username.includes('customer') && password === 'overlook2019') {
     window.location = './customer.html'
   } else {
-    domUpdates.displayLoginError();
+    $('.requirements').addClass();
   }
 })
 
@@ -87,8 +87,8 @@ $('.guest__btn').click(() => {
 
 $('.search__guest--btn').click((e) => {
   e.preventDefault()
-  //   let id = $('.article__input-search').val;
-  //   let guestID = manager.findGuestById(id);
+  let id = $('.article__input-search').val;
+  let guestID = manager.findGuestById(id);
   console.log(guestID)
   let pickGuest = $('.article__input-search').val();
   let name = $('.article__input-search option:selected').text()

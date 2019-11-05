@@ -38,12 +38,14 @@ span {
   flex-direction: row;
   justify-content: center;
     form input {
-      -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
       -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+      -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
       box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
-      height: 19px;
-      font-size: .7em;
+      font-size: .8em;
+      height: 30px;
       outline: 0;
+      padding-left: 2%;
+      width: 75%;
         &:invalid {
           border-color: red;
         }
@@ -69,9 +71,14 @@ span {
   display: none;
 }
 
-.login__error {
+.requirements {
+  padding: 0 30px 0 50px;
+  color: #999;
+  max-height: 0;
+  transition: 0.28s;
+  overflow: hidden;
   color: red;
-  font-size: 1.25em;
+  font-style: italic;
 }
 
 header {
@@ -128,6 +135,8 @@ button {
 
 .article__main {
   border: 8px solid $manager__main-color;
+  display: flex;
+  flex-direction: column;
 }
 
 .guest__btn:hover,
@@ -169,29 +178,36 @@ button {
 article {
   background-color: rgba(238, 238, 238, .7);
   border-radius: 20px;
+  display: flex;
+  flex-direction: row;
   font-size: $bodySizeSmall;
-  height: 65%;
-  padding: 1% 2% 0 4%;
+  padding: 3%;
   position: absolute;
   top: 25%;
-  width: 76%;
+  width: 85%;
 }
 
 .article__input-container {
   border: 1px solid black;
   display: inline-block;
-  height: 50%;
   margin-left: 20px;
   padding: 16px;
   width: 40%;
 }
 
 .article__input {
+  font-size: .7em;
   height: 40px;
   width: 85%;
 }
 
-.div__guest--btn{
+.add__guest--btn, 
+.add__booking--btn,
+.delete__booking--btn,
+.search__guest--btn,
+.search__date--btn,
+.filter__date--btn,
+.book__room--btn {
   border-radius: 5px;
   height: 30px;
   width: 60%;
