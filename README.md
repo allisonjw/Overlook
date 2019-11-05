@@ -1,5 +1,5 @@
-## Overlook Resort and Spa
-# [Allison Wagner's GitHub Account](https://github.com/allisonjw)
+# Overlook Resort and Spa
+## [Allison Wagner's GitHub Account](https://github.com/allisonjw)
 
 Overlook is a hotel management application. It is a tool for hotel staff to manage activities like tracking default hotel statistics, customer details, booking information for different types of rooms. A customer can also login and be able to view their amount spent on rooms, view reservations and book a reservation.
 
@@ -43,7 +43,7 @@ Project is running at http://localhost:8080/
 
 Go to `http://localhost:8080/` in your browser to view the siteJavaScript files to keep your code organized and readable. Webpack expects all of your code files to be in a specific place, or else it doesn't know how to combine them all behind the scenes.
 
-//REMOVE BELOW BEFORE DEPLOYING/////////
+# /////REMOVE BELOW BEFORE DEPLOYING/////////
 
 
 [GitHub Pages](https://pages.github.com/) is a great way to deploy your project to the web. Don't worry about this until your project is free of bugs and well tested!
