@@ -1,15 +1,15 @@
 import domUpdates from './domUpdates.js';
 
 class Hotel {
-  constructor(usersData, roomsData, bookingsData, id) {
-    this.guest = usersData;
-    this.rooms = roomsData;
+  constructor(usersData, bookingsData, roomsData, id) {
+    this.users = usersData;
     this.bookings = bookingsData;
-    this.user = this.findCustomerData(id);
+    this.rooms = roomsData;
+    // this.user = this.findCustomerData(id);
   }
 
   findCustomerData(id) {
-    return this.guest.find(guest => guest.id === id);
+    return this.users.find(guest => guest.id === id);
   }
 
   findRoomsBooked(id) {

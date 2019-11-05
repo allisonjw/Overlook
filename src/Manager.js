@@ -1,15 +1,15 @@
+import Hotel from '../src/Hotel';
 import Guest from './Guest';
 import domUpdates from './domUpdates.js';
 
 class Manager {
-  constructor(usersData, bookingsData, roomsData, id, today) {
+  constructor(usersData, bookingsData, roomsData, id) {
     this.users = usersData;
-    this.guest = new Guest(bookingsData, roomsData)
     this.bookings = bookingsData;
     this.rooms = roomsData;
     this.id = id;
-    this.today = today;
-    this.user = this.findGuestById(id)
+    this.guest = new Guest(bookingsData, roomsData)
+    // this.user = this.findGuestById(id)
     this.currentGuest;
 }
 
