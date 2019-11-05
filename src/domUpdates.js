@@ -2,9 +2,47 @@ import $ from 'jquery';
 
 const domUpdates = {
 
-  displayDate(today) {
-    $('.main__date').append(today);
+  fixDate(date) {
+    let splitDate = date.split('-');
+    return `${splitDate[0]}/${splitDate[1]}/${splitDate[2]}`
   },
+
+  findCurrentDate() {
+    let today = new Date();
+    let day = String(today.getDate()).padStart(2, '0');
+    let month = String(today.getMonth() + 1).padStart(2, '0');
+    let year = today.getFullYear();
+    return `${year}/${month}/${day}`;
+  },
+
+  displayCurrentDate() {
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ];
+    const days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ];
+    let currentDate = new Date();
+    return `${days[currentDate.getDay()]} -
+    ${months[currentDate.getMonth()]} ${currentDate.getDate()},${currentDate.getFullYear()}`;
+  },  
 
   displayPercentRooms(percentage) {
     $('.main__room-percent').append(percentage);
@@ -79,18 +117,20 @@ const domUpdates = {
 
   displayTotalRoomDollars(total) {
     $('.users__bookings-total').append(`$${total}`)
+    $('.guest__total').append(`$${total}`)
   },
 
   displayBookingsForGuest(bookingsData) {
-    $('.list__guest--bookings').html('');
+    $('.ul__guest-bookings').html('');
     bookingsData.forEach(booking => {
       let bookingsList = $(`<li><h6>Date: ${booking.date}<br> Room Number: ${booking.roomNumber}</h6></li></ul>`);
-      $('.list__guest--bookings').append(bookingsList);
+      $('.ul__guest-bookings').append(bookingsList);
     });
   },
 
-  displayNewBookingForGuest() {
-    
+  displayNewBookingForGuest(date, roomNumber) {
+    let newBooking = $(`<li><h6>Date: ${date}<br> Room Number: ${roomNumber}</h6></li>`);
+    $('.ul__guest-bookings').prepend(newBooking);
   },
 
   displayAvailableRoomsByType(roomsData, today) {
@@ -98,10 +138,6 @@ const domUpdates = {
       let roomsList = $(`<option data-date='${today}' data-number='${room.number}' data-type='${room.roomType}' data-numBeds='${room.numBeds}' data-bedSize='${room.bedSize}' data-bidet='${room.bidet}'>A ${room.roomType} with ${room.numBeds} ${room.bedSize} bed(s), has bidet: ${room.bidet}</option>`)
       $('.article__type-filter').append(roomsList);
     });
-  },
-
-  displayGuestTotalBill() {
-    //need to add check method in guest
   }
 
 }

@@ -7,13 +7,11 @@ class Manager {
     this.guest = new Guest(bookingsData, roomsData)
     this.bookings = bookingsData;
     this.rooms = roomsData;
+    this.id = id;
     this.today = today;
     this.user = this.findGuestById(id)
-  }
-
-//   findGuestById(id) {
-//     return this.users.find(guest => guest.id === id)
-//   }
+    this.currentGuest;
+}
 
   findGuestById(id) {
     return this.users.find((user) => {
