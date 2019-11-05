@@ -1,12 +1,12 @@
-import {expect} from 'chai';
+import chai, {expect} from 'chai';
 import Manager from '../src/Manager';
+import domUpdates from '../src/domUpdates.js';
+import spies from 'chai-spies';
+chai.use(spies);
 
 import usersData from '../test-data/users-data.js';
 import roomsData from '../test-data/rooms-data.js';
 import bookingsData from '../test-data/bookings-data.js';
-
-// chai.use(spies);
-// chai.spy.on(domUpdates, ['displayPercentRooms', 'displayAvailability', 'displayRevenue'], () => {});
 
 describe('Manager', () => {
 
@@ -32,6 +32,9 @@ describe('Manager', () => {
 
   describe('findRoomsAvailableToday', () => {
     it('should return number of room available today', () => {
+      chai.spy.on(domUpdates, 'displayAvailability', () => 14)  
+      manager.findRoomsAvailableToday();
+      //   expect(domUpdates.displayAvailability).to.have.been.called(1);
       expect(manager.findRoomsAvailableToday('2019/11/18')).to.eql(14);
     });
   });
@@ -44,12 +47,18 @@ describe('Manager', () => {
  
   describe('getTotalRevenueToday', () => {
     it('should return total revenue for today', () => {
+      chai.spy.on(domUpdates, 'displayRevenue', () => 340)  
+      manager.getTotalRevenueToday();
+      //   expect(domUpdates.displayRevenue).to.have.been.called(1);
       expect(manager.getTotalRevenueToday('2019/11/18')).to.equal(340);
     });
   });
 
   describe('getPercentOfRoomsOccupied', () => {
     it('should return percent of rooms occupied for today', () => {
+      chai.spy.on(domUpdates, 'displayPercentRooms', () => 7)  
+      manager.getPercentOfRoomsOccupied();
+      //   expect(domUpdates.displayPercentRooms).to.have.been.called(1);
       expect(manager.getPercentOfRoomsOccupied('2019/11/18')).to.equal(7)
     });
   });
@@ -57,6 +66,18 @@ describe('Manager', () => {
   describe('filterGuestByName', () => {
     it('should be able to search through all guest data', () => {
       expect(manager.filterGuestByName('Leatha Ullrich')).to.eql([{ id: 1, name: 'Leatha Ullrich' }])
+    });
+  });
+
+  describe('getAPIFetchData', () => {
+    it('should get fetched data from API', () => {
+      let fetchSpy = chai.spy.on(global, 'fetch', () => {
+        return new Promise((resolve, reject) => {
+          resolve({message: 'Data Has Been Fetched'});    
+        })
+      });
+      manager.getAPIFetchData('https://exmpl.in/api/test/2', 'message');
+      expect(fetchSpy).to.have.been.called(1);
     });
   });
 
