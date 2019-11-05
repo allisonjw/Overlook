@@ -1,5 +1,5 @@
-# Overlook Resort and Spa
-## [Allison Wagner GitHUN](https://github.com/allisonjw)
+## Overlook Resort and Spa
+# [Allison Wagner's GitHub Account](https://github.com/allisonjw)
 
 Overlook is a hotel management application. It is a tool for hotel staff to manage activities like tracking default hotel statistics, customer details, booking information for different types of rooms. A customer can also login and be able to view their amount spent on rooms, view reservations and book a reservation.
 
