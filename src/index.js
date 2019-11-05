@@ -1,8 +1,8 @@
 import $ from 'jquery';
 import './css/base.scss';
-import Hotel from './Hotel';
+// import Hotel from './Hotel';
 import Manager from '../src/Manager';
-import Guest from '../src/Guest';
+// import Guest from '../src/Guest';
 import domUpdates from './domUpdates.js';
 
 
