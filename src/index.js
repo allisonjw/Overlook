@@ -35,7 +35,8 @@ $('.login--btn').click((e) => {
   } else if (username.includes('customer') && password === 'overlook2019') {
     window.location = './customer.html'
   } else {
-    $('.requirements').addClass();
+    $.trim(username, password) === " " 
+    $('.requirements').fadeIn(300);
   }
 })
 

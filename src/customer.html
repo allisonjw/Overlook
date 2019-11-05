@@ -25,14 +25,19 @@
           <h2>Book a Room</h2>
           <label>Select a Date</label>
           <form class="div__form--search">
-            <select class="article__input article__date-search" name="date"></select>
+            <input class="article__input article__date-search" type="text" placeholder="YYYY/MM/DD">
             <button class="search__date--btn">Submit</button>
           </form> 
         </div>
         <div class="article__input-container">
           <label>Filter By Room Type</label>
           <form>
-            <select class="article__input article__type-filter" name="roomType"></select>
+            <select class="article__input article__type-filter" name="roomType">
+              <option value="residential suite">Residential Suite</option>
+              <option value="junior suite">Junior Suite</option>
+              <option value="suite">Suite</option>
+              <option value="single room">Single Room</option>
+            </select>
             <button class="filter__date--btn">Filter</button>
          </form>
           <button class="book__room--btn">Book</button>

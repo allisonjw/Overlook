@@ -84,26 +84,24 @@ const domUpdates = {
   displayBookingsForGuest(bookingsData) {
     $('.list__guest--bookings').html('');
     bookingsData.forEach(booking => {
-      let bookingsList = $(`<li><h6>Date: ${booking.date}<br> Room Number: ${booking.roomNumber}</h6></li>`);
+      let bookingsList = $(`<li><h6>Date: ${booking.date}<br> Room Number: ${booking.roomNumber}</h6></li></ul>`);
       $('.list__guest--bookings').append(bookingsList);
     });
   },
 
-  displayNewBookingForGuest(today, roomNumber) {
-    let newBooking = $(`<li><h6>Date: ${today}<br> Room Number: ${roomNumber}</h6></li>`);
-    $('.article__input-bookings').prepend(newBooking);
+  displayNewBookingForGuest() {
+    
   },
 
   displayAvailableRoomsByType(roomsData, today) {
     roomsData.forEach(room => {
       let roomsList = $(`<option data-date='${today}' data-number='${room.number}' data-type='${room.roomType}' data-numBeds='${room.numBeds}' data-bedSize='${room.bedSize}' data-bidet='${room.bidet}'>A ${room.roomType} with ${room.numBeds} ${room.bedSize} bed(s), has bidet: ${room.bidet}</option>`)
-      $('#available-rooms').append(roomsList);
+      $('.article__type-filter').append(roomsList);
     });
   },
 
-  displayGuestTotalBill(guest, total) {
-    $('#guest-name-bill').html(guest);
-    $('#guest-amount-bill').html(`$${total}`);
+  displayGuestTotalBill() {
+    //need to add check method in guest
   }
 
 }
