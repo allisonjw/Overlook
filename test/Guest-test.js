@@ -19,7 +19,24 @@ describe('Guest', () => {
 
   describe('pastGuestRoomBookings', () => {
     it('should be show rooms available for a specific date', () => {
-      expect(guest.pastGuestRoomBookings(1, '2019/11/18')).to.eql([{
+      expect(guest.pastGuestRoomBookings(2, '2019/11/18')).to.eql([{
+        userID: 2,
+        date: "2019/11/11",
+        roomNumber: 2,
+        id: 1572998363243
+      },
+      {
+        userID: 2,
+        date: "2019/11/11",
+        roomNumber: 24,
+        id: 1572998379769
+      }])
+    });
+  });
+
+  describe('futureGuestRoomBookings', () => {
+    it('should be show rooms available for a specific date', () => {
+      expect(guest.futureGuestRoomBookings(1, '2019/11/18')).to.eql([{
         id: 1572293130160,
         userID: 1,
         date: '2019/11/18',
@@ -29,15 +46,9 @@ describe('Guest', () => {
     });
   });
 
-  describe('futureGuestRoomBookings', () => {
-    it.skip('should be show rooms available for a specific date', () => {
-      expect(guest.futureGuestRoomBookings(1)).to.eql([{}])
-    });
-  });
-
   describe('totalGuestRoomsSpent', () => {
     it('should be show the total amount the guest has spent on rooms', () => {
-      expect(guest.totalGuestRoomsSpent(1)).to.equal(340.17)
+      expect(guest.totalGuestRoomsSpent(2)).to.equal(804.62)
     });
   });
   
@@ -154,6 +165,14 @@ describe('Guest', () => {
         "numBeds": 1,
         "number": 15,
         "roomType": "residential suite"
+      },
+      {
+        "bedSize": "queen",
+        "bidet": false,
+        "costPerNight": 327.24,
+        "numBeds": 1,
+        "number": 24,
+        "roomType": "suite"
       }]);
     });
   });
@@ -175,6 +194,14 @@ describe('Guest', () => {
         "numBeds": 1,
         "number": 10,
         "roomType": "suite"
+      },
+      {
+        "bedSize": "queen",
+        "bidet": false,
+        "costPerNight": 327.24,
+        "numBeds": 1,
+        "number": 24,
+        "roomType": "suite",
       }]);
     }); 
     it('should be able to filter rooms by residential suite type', () => {

@@ -11,53 +11,55 @@
   <header>
     <h1 class="header__title">Overlook Resort and <span class="header__span">Spa</span></h1>
     <p class="header__users-name">Welcome<span id="header__current-user"></span></p>
-    <button class="logout__btn">Logout</button>
+    <button tabindex="1" class="logout__btn">Logout</button>
   <nav>
-    <button class="newRes__btn" id="newRes">Make Reservations</button>
-    <button class="resHistory__btn" id="resHistory">Reservation History</button>
-    <button class="roomsTotal__btn" id="rooms">Rooms Total</button>
+    <button tabindex="1" class="newRes__btn" id="newRes">Make Reservations</button>
+    <button tabindex="1" class="resHistory__btn" id="resHistory">Reservation History</button>
+    <button tabindex="1" class="roomsTotal__btn" id="rooms">Rooms Total</button>
   </nav>
   </header>
   <main>
     <section class="section__guest-newReservations">
 
       <article>
-        <div class="article__bookRoom-container">
+        <form class="article__bookRoom-container">
           <h2>Book a Room</h2>
-          <label>Select a Date</label>
-            <input class="article__input article__date-search" type="date" placeholder="YYYY/MM/DD" min="2019-07-30"
+          <label for="date">Select a Date
+            <input id="date" class="article__input article__date-search" type="date" placeholder="YYYY/MM/DD" min="2019-07-30"
             max="2019-12-31">
+          </label>
             <button class="search__date--btn">Submit</button>
-          <label>Filter By Room Type</label>
-            <select class="article__input article__room-type" disabled>
-
+          <label for="type">Filter By Room Type</label>
+            <select id="type" class="article__input article__room-type" disabled>
               <option value="residential suite">Residential Suite</option>
               <option value="junior suite">Junior Suite</option>
               <option value="suite">Suite</option>
               <option value="single room">Single Room</option>
             </select>
-            <select class="article__input article__type-filter" disabled>
+            <label for="filter">Pick Available Room
+            <select id="filter" class="article__input article__type-filter" disabled>
               <option>Choose an available room</option>
             </select>
+           </label>
           <button class="book__room--btn">Book</button>
         <p class="user__no-room--error" hidden>Sorry, it appears that we are all booked for the date you selected<span class="span__noRoomError-name"></span>. Please change your search and look again</p>
-    </div>
+    </form>
       </article>
     </section>
     <section class="section__guest-resHistory">
       <article class="article__guest-resHistory"> 
-        <div class="article__input-container">   
+        <form class="article__input-container">   
           <h2>Your Booking History</h2>
           <h3>Past Bookings:<span class="users__past-bookings"></span></h3>
-        </div>  
+        </form>  
       </article>  
     </section>
     <section class="section__guest-roomsTotal"> 
       <article class="article__guest-roomsTotal">
-        <div class="article__input-container">  
+        <form class="article__input-container">  
           <h2>Your Total Amount Spent on Rooms</h2>
           <h3>Total Spent on Rooms:<span class="users__bookings-total"></span></h3>
-        </div>  
+        </form>  
       </article>
     </section>
   </main>

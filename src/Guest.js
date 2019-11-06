@@ -4,18 +4,18 @@ import domUpdates from './domUpdates.js';
 
 class Guest {
   constructor(bookingsData, roomsData, id) {
-    this.bookingsData = bookingsData;
+    this.bookings = bookingsData;
     this.rooms = roomsData;
     this.id = id;
   }
 
-  pastGuestRoomBookings(id) {
-    return this.bookingsData.filter(booking => booking.userID === id)
+  pastGuestRoomBookings(id, today) {
+    return this.bookings.filter(booking => booking.userID === id && booking.date < today)
   }
 
-  // futureGuestRoomBookings(id) {
-
-  // }
+  futureGuestRoomBookings(id, today) {
+    return this.bookings.filter(booking => booking.userID === id && booking.date >= today)
+  }
 
   totalGuestRoomsSpent(id) {
     return this.pastGuestRoomBookings(id).reduce((sum, booking) => {
@@ -29,7 +29,7 @@ class Guest {
   }
 
   roomsAvailableForDate(today) {
-    let roomNum = this.bookingsData.filter(booking => booking.date === today).map(room =>room.roomNumber)
+    let roomNum = this.bookings.filter(booking => booking.date === today).map(room =>room.roomNumber)
     return this.rooms.filter(room => !roomNum.includes(room.number))
   }
 
