@@ -303,3 +303,9 @@ h2 {
       background-color: darkgray;
     }
 }
+
+.div_guest-past--bookings,
+.div_new-past--bookings {
+  display: flex;
+  flex-direction: column;
+}

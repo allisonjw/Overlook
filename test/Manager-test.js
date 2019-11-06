@@ -1,12 +1,11 @@
 import chai, {expect} from 'chai';
 import Manager from '../src/Manager';
 import domUpdates from '../src/domUpdates.js';
-import spies from 'chai-spies';
-chai.use(spies);
-
 import usersData from '../test-data/users-data.js';
 import roomsData from '../test-data/rooms-data.js';
 import bookingsData from '../test-data/bookings-data.js';
+import spies from 'chai-spies';
+chai.use(spies);
 
 describe('Manager', () => {
 

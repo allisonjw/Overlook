@@ -111,7 +111,7 @@ const domUpdates = {
     let newBookings = manager.guest.futureGuestRoomBookings()
     newBookings.forEach(booking => {
       let upcomingRes = $(`
-      <div class="div_guest-bookings"><h4>CONFIRMATION NUMBER: ${booking.id}</h4>
+      <div class="div_guest-new--bookings"><h4>CONFIRMATION NUMBER: ${booking.id}</h4>
       <p>${booking.date}</p><p>ROOM NUMBER: ${booking.roomNumber}</p>
       </div>`)
       $('.users__upcoming-bookings').append(upcomingRes)
@@ -122,10 +122,9 @@ const domUpdates = {
     let bookings = manager.guest.pastGuestRoomBookings()
     bookings.forEach(booking => {
       let pastRes = $(`
-      <div class="div_guest-bookings"><h4>CONFIRMATION NUMBER: ${booking.id}</h4>
+      <div class="div_guest-past--bookings"><h4>CONFIRMATION NUMBER: ${booking.id}</h4>
       <p>${booking.date}</p><p>ROOM NUMBER: ${booking.roomNumber}</p>
       </div>`)
-      $('.users__upcoming-bookings')
       $('.users__past-bookings').append(pastRes);
     });
   },

@@ -21,8 +21,6 @@ let roomsData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/
   
 Promise.all([usersData, bookingsData, roomsData])
   .then(data => manager = new Manager(data[0].users, data[1].bookings, data[2].rooms))
-  .then(data => console.log(manager.guest))
-  .then(data => console.log(manager))
   .then(data => openHotel(domUpdates.findCurrentDate()))
   .catch(error => console.log(error))
  
@@ -51,9 +49,10 @@ const openHotel = (today) => {
   domUpdates.displayAvailability(manager.findRoomsAvailableToday(today));
   domUpdates.displayRevenue(manager.getTotalRevenueToday(today));
   domUpdates.displayGuestList(manager.users)
+  $('.users__past-bookings').text(domUpdates.displayPastReservations(manager.guest.pastGuestRoomBookings(25)))
   domUpdates.displayPastReservations(manager.guest.pastGuestRoomBookings(25));
   domUpdates.displayUpcomingReservations(manager.guest.futureGuestRoomBookings(42));
-  domUpdates.displayTotalRoomDollars(manager.guest.totalGuestRoomsSpent());
+  domUpdates.displayTotalRoomDollars(manager.guest.totalGuestRoomsSpent(today));
 }
 
 //POST METHOD (WIP)
