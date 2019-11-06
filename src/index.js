@@ -33,13 +33,14 @@ $('.login--btn').click((e) => {
     window.location = './manager.html'
     
   } else if (username.includes('customer') && password === 'overlook2019') {
-    let userID = Number(username.split('r')[1]);  
+    userID = Number(username.split('r')[1]);  
     window.location = './customer.html'
     customerHandler(userID)
   } else {
     $.trim(username, password) === " " 
     $('.requirements').fadeIn(300);
   }
+  return userID
 });
 
 
@@ -51,10 +52,9 @@ const openHotel = (today) => {
   domUpdates.displayAvailability(manager.findRoomsAvailableToday(today));
   domUpdates.displayRevenue(manager.getTotalRevenueToday(today));
   domUpdates.displayGuestList(manager.users)
-  $('.users__past-bookings').text(domUpdates.displayPastReservations(manager.guest.pastGuestRoomBookings(25)))
-  domUpdates.displayPastReservations(manager.guest.pastGuestRoomBookings(25));
-  domUpdates.displayUpcomingReservations(manager.guest.futureGuestRoomBookings(42));
-  domUpdates.displayTotalRoomDollars(manager.guest.totalGuestRoomsSpent(today));
+  $('.users__bookings-total').append(`$${manager.guest.totalGuestRoomsSpent(50, today)}`)
+  $('.users__past-bookings').append(domUpdates.displayPastReservations(manager.guest.pastGuestRoomBookings(50, today)))
+  $('.users__upcoming-bookings').append(domUpdates.displayUpcomingReservations(manager.guest.futureGuestRoomBookings(50, today)))
 }
 
 //POST METHOD (WIP)
@@ -123,11 +123,10 @@ $('.roomsTotal__btn').click(() => {
 });
 
 const customerHandler = (userID) => {
-  let userName = manager.usersData.find(user => user.id === userID);
-  console.log(userName)
-  let guest = new Guest(userName.id, userName.name);
-  $('#header__current-customer').append(`${'hello'}!`);
-
+  let userName = manager.users.find(user => user.id === userID);
+  console.log(userName.name)
+//   let guest = new Guest(userName.id, userName.name);
+  $('#header__current-customer').append(`${userName.name}!`);
 }
 
 //DROP DOWN CALENDAR //SEARCH ROOMS
@@ -170,15 +169,16 @@ $('.search__guest--btn').click((e) => {
   let foundGuest = manager.filterGuestByName(pickedGuest)
   manager.currentGuest = foundGuest;
   let guestID = manager.findGuestById();
+  console.log(guestID)
   let name = $('.article__input-search option:selected').text()
-  let guestTotal = manager.guest.totalGuestRoomsSpent(guestID)
+  let guestTotal = manager.guest.totalGuestRoomsSpent(userID)
   handleGuestInfo(pickedGuest)
   domUpdates.displayGuestName(name);
   $('.ul__guest-bookings').html('');
   let allBookings = manager.getAllGuestBooking()
   console.log(allBookings)
   domUpdates.displayBookingsForGuest(allBookings);
-//   domUpdates.displayTotalRoomDollars(guestTotal)
+  domUpdates.displayTotalRoomDollars(guestTotal)
 });
   
 const handleGuestInfo = (guestName) => {

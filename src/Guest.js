@@ -3,10 +3,11 @@ import domUpdates from './domUpdates.js';
 
 
 class Guest {
-  constructor(bookingsData, roomsData, id) {
+  constructor(bookingsData, roomsData, id, name) {
     this.bookings = bookingsData;
     this.rooms = roomsData;
     this.id = id;
+    this.name = name;
   }
 
   pastGuestRoomBookings(id, today) {
@@ -17,8 +18,8 @@ class Guest {
     return this.bookings.filter(booking => booking.userID === id && booking.date >= today)
   }
 
-  totalGuestRoomsSpent(id) {
-    return this.pastGuestRoomBookings(id).reduce((sum, booking) => {
+  totalGuestRoomsSpent(id, today) {
+    return this.pastGuestRoomBookings(id, today).reduce((sum, booking) => {
       this.rooms.forEach(room => {
         if (room.number === booking.roomNumber) {
           return sum += room.costPerNight
