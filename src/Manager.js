@@ -8,7 +8,7 @@ class Manager {
     this.users = usersData;
     this.bookings = bookingsData;
     this.rooms = roomsData;
-    this.id = id;
+    this.id = usersData.id;
     this.guest = new Guest(bookingsData, roomsData)
     // this.user = this.findGuestById(id)
     this.currentGuest;
@@ -18,6 +18,16 @@ class Manager {
     return this.users.find((user) => {
       return user.id === parseInt(id);
     });
+  }
+
+  getAllGuestBooking(id = this.id) {
+    let myBookings = []
+    this.bookings.forEach(booking => {
+      if (booking.userID === id) {
+        myBookings.push(booking)
+      }
+    })
+    return myBookings
   }
   
   findRoomsAvailableToday(today) {

@@ -30,6 +30,15 @@ describe('Manager', () => {
     });
   });
 
+  describe('getAllGuestBooking', () => {
+    it('should be to return all guest bookings', () => {
+      expect(manager.getAllGuestBooking(2)).to.eql([
+        { userID: 2, date: '2019/11/11', roomNumber: 2, id: 1572998363243 },
+        { userID: 2, date: '2019/11/11', roomNumber: 24, id: 1572998379769 }
+      ])
+    });
+  });
+
   describe('findRoomsAvailableToday', () => {
     it('should return number of room available today', () => {
       chai.spy.on(domUpdates, 'displayAvailability', () => 14)  
