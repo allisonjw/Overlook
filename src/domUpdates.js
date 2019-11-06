@@ -108,11 +108,26 @@ const domUpdates = {
   },
 
   displayUpcomingReservations() {
-
+    let newBookings = manager.guest.futureGuestRoomBookings()
+    newBookings.forEach(booking => {
+      let upcomingRes = $(`
+      <div class="div_guest-bookings"><h4>CONFIRMATION NUMBER: ${booking.id}</h4>
+      <p>${booking.date}</p><p>ROOM NUMBER: ${booking.roomNumber}</p>
+      </div>`)
+      $('.users__upcoming-bookings').append(upcomingRes)
+    });
   },
 
-  displayPastReservations(past) {
-    $('.users__past-bookings').append(`${past}`)
+  displayPastReservations() {
+    let bookings = manager.guest.pastGuestRoomBookings()
+    bookings.forEach(booking => {
+      let pastRes = $(`
+      <div class="div_guest-bookings"><h4>CONFIRMATION NUMBER: ${booking.id}</h4>
+      <p>${booking.date}</p><p>ROOM NUMBER: ${booking.roomNumber}</p>
+      </div>`)
+      $('.users__upcoming-bookings')
+      $('.users__past-bookings').append(pastRes);
+    });
   },
 
   displayTotalRoomDollars(total) {
@@ -120,13 +135,14 @@ const domUpdates = {
     $('.guest__total').append(`$${total}`)
   },
 
-  displayBookingsForGuest(bookingsData) {
-    $('.ul__guest-bookings').html('');
-    bookingsData.forEach(booking => {
-      let bookingsList = $(`<li><h6>Date: ${booking.date}<br> Room Number: ${booking.roomNumber}</h6></li></ul>`);
-      $('.ul__guest-bookings').append(bookingsList);
-    });
-  },
+  // displayBookingsForGuest(bookings) {
+  //   $('.ul__guest-bookings').html('');
+  //   let allBookings = manager.getAllGuestBooking()
+  //   allBookings.forEach(booking => {
+  //     let bookingsList = $(`<li><h6>Date: ${booking.date}<br> Room Number: ${booking.roomNumber}</h6></li></ul>`);
+  //     $('.ul__guest-bookings').append(bookingsList);
+  //   });
+  // },
 
   displayNewBookingForGuest(date, roomNumber) {
     let newBooking = $(`<li><h6>Date: ${date}<br> Room Number: ${roomNumber}</h6></li>`);

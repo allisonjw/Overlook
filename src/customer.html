@@ -13,16 +13,15 @@
     <p class="header__users-name">Welcome<span id="header__current-user"></span></p>
     <button class="logout__btn">Logout</button>
   <nav>
-    <button class="newRes__btn" id="newRes">Make Reservations</button>
-    <button class="resHistory__btn" id="resHistory">Reservation History</button>
-    <button class="roomsTotal__btn" id="rooms">Rooms Total</button>
+    <button tabindex="1" class="newRes__btn" id="newRes">Make Reservations</button>
+    <button tabindex="1" class="resHistory__btn" id="resHistory">Reservation Info</button>
+    <button tabindex="1" class="roomsTotal__btn" id="rooms">Rooms Total</button>
   </nav>
   </header>
   <main>
     <section class="section__guest-newReservations">
-
-      <article>
-        <div class="article__bookRoom-container">
+      <article class="article__bookRoom-container">
+        <form class="form__bookRoom-container">
           <h2>Book a Room</h2>
           <label>Select a Date</label>
             <input class="article__input article__date-search" type="date" placeholder="YYYY/MM/DD" min="2019-07-30"
@@ -46,18 +45,22 @@
     </section>
     <section class="section__guest-resHistory">
       <article class="article__guest-resHistory"> 
-        <div class="article__input-container">   
-          <h2>Your Booking History</h2>
-          <h3>Past Bookings:<span class="users__past-bookings"></span></h3>
-        </div>  
-      </article>  
+        <form class="article__input-container">   
+          <h2>Your Bookings</h2>
+          <h3>Past:<span class="users__past-bookings"></span></h3>
+        </form>  
+          <form class="article__input-container">   
+            <h2>Your Bookings</h2>
+            <h3>Upcoming:<span class="users__upcoming-bookings"></span></h3>
+          </form>  
+        </article>   
     </section>
     <section class="section__guest-roomsTotal"> 
       <article class="article__guest-roomsTotal">
         <div class="article__input-container">  
           <h2>Your Total Amount Spent on Rooms</h2>
-          <h3>Total Spent on Rooms:<span class="users__bookings-total"></span></h3>
-        </div>  
+          <h3>Total:<span class="users__bookings-total"></span></h3>
+        </form>  
       </article>
     </section>
   </main>

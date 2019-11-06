@@ -1,4 +1,5 @@
 @import '_variables';
+@import '_media_queries';
 
 %backgroundImgStyle {
   background-repeat: no-repeat;
@@ -65,6 +66,12 @@ span {
   margin: 0% 3% 2% 3%;
   padding: 0% 2% 1% 4%;
   width: 23%;
+  @include md {
+    width: 34%;
+  }
+  @include sm {
+    width: 50%;
+  }
 }
 
 .hidden {
@@ -85,6 +92,9 @@ header {
     font-weight: 400;
     margin: 0;
     padding: 10px;
+    @include sm {
+      text-align: center;
+    }
     .header__span {
       font-style: italic;
       font-weight: 700;
@@ -102,6 +112,17 @@ nav {
   font-size: $bodySizeSmall;
   left: 63%;
   position: absolute;
+    @include sm {
+      text-align: center;
+      display: contents;
+    }
+    @include md {
+      text-align: center;
+      display: contents;
+    }
+    @include lg {
+      display: contents;
+    }
 }
 
 button {
@@ -110,6 +131,17 @@ button {
   height: 30px;
   margin: 10px;
   width: 13%;
+    @include lg {
+      width: 20%;
+    }
+    @include md {
+      height: 28px;
+      width: 23%
+    }
+    @include sm {
+      height: 41px;
+      width: 28%;
+    }
     &:hover {
       font-weight: 900;
       cursor: pointer;
@@ -120,6 +152,9 @@ button {
 
 .logout__btn {
   float: right;
+    @include sm {
+      display: initial;;
+    }
 }
   
 .main__btn:hover,
@@ -135,8 +170,12 @@ button {
   flex-direction: column;
 }
 
-.article__guest-newReservations {
+.article__bookRoom-container {
   border: 8px solid $manager__main-color;
+  width: 55%;
+    @include sm {
+      width: 76%;
+    }
 }
 
 .guest__btn:hover,
@@ -191,6 +230,10 @@ article {
   position: absolute;
   top: 25%;
   width: 85%;
+  @include sm {
+    flex-direction: column;
+    position: inherit;
+  }
 }
 
 .article__input-container {
@@ -199,15 +242,45 @@ article {
   margin-left: 20px;
   padding: 16px;
   width: 40%;
+    @include sm {
+      margin: 20px;
+      width: 85%;
+    }
 }
 
-.article__bookRoom-container {
+.form__bookRoom-container {
   border: 1px solid black;
   display: flex;
   flex-direction: column;
-  margin-left: 20px;
-  padding: 16px;
-  width: 80%;
+  margin-left: 13%;
+  padding: 7%;
+  width: 57%;
+    @include sm {
+      margin: 0;
+      width: 86%;
+    }
+    input {
+      border-radius: 5px;
+      font-size: .7em;
+      height: 40px;
+      width: 85%;
+      @include sm {
+        width: 100%;
+      }
+    }
+    select {
+      width: 85%;
+      @include sm {
+        width: 100%;
+      }
+    }
+    button {
+      height: 38px;
+      width: 79%;
+      @include sm {
+        width: 100%;
+      }
+    }
 }
 
 .article__input {
