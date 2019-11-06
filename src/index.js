@@ -24,7 +24,7 @@ Promise.all([usersData, bookingsData, roomsData])
   .then(data => openHotel(domUpdates.findCurrentDate()))
   .catch(error => console.log(error))
  
-//LOGIN VALIDATION (WIP) - HOW TO GET USER ID
+//LOGIN VALIDATION (WIP) - HOW TO GET USER ID//MOVE TO GUEST?
 $('.login--btn').click((e) => {
   e.preventDefault();
   let username = $('#username').val();
@@ -33,7 +33,9 @@ $('.login--btn').click((e) => {
     window.location = './manager.html'
     
   } else if (username.includes('customer') && password === 'overlook2019') {
+    let userID = Number(username.split('r')[1]);  
     window.location = './customer.html'
+    customerHandler(userID)
   } else {
     $.trim(username, password) === " " 
     $('.requirements').fadeIn(300);
@@ -64,7 +66,7 @@ $('.book__room--btn').click((e) => {
     },
     body: JSON.stringify({
       id: Date.now(),
-      userID: this.id,
+      userID: userID,
       date: $('.search__date--btn').val(),
       roomNumber: num
     })
@@ -120,6 +122,14 @@ $('.roomsTotal__btn').click(() => {
   domUpdates.totalSpentHandler()
 });
 
+const customerHandler = (userID) => {
+  let userName = manager.usersData.find(user => user.id === userID);
+  console.log(userName)
+  let guest = new Guest(userName.id, userName.name);
+  $('#header__current-customer').append(`${'hello'}!`);
+
+}
+
 //DROP DOWN CALENDAR //SEARCH ROOMS
 $('.search__date--btn').click((e) => {
   e.preventDefault();  
@@ -167,8 +177,8 @@ $('.search__guest--btn').click((e) => {
   $('.ul__guest-bookings').html('');
   let allBookings = manager.getAllGuestBooking()
   console.log(allBookings)
-domUpdates.displayBookingsForGuest(allBookings);
-  domUpdates.displayTotalRoomDollars(guestTotal)
+  domUpdates.displayBookingsForGuest(allBookings);
+//   domUpdates.displayTotalRoomDollars(guestTotal)
 });
   
 const handleGuestInfo = (guestName) => {

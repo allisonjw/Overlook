@@ -107,8 +107,7 @@ const domUpdates = {
     $('.section__guest-roomsTotal').show();
   },
 
-  displayUpcomingReservations() {
-    let newBookings = manager.guest.futureGuestRoomBookings()
+  displayUpcomingReservations(newBookings) {
     newBookings.forEach(booking => {
       let upcomingRes = $(`
       <div class="div_guest-new--bookings"><h4>CONFIRMATION NUMBER: ${booking.id}</h4>
@@ -118,9 +117,8 @@ const domUpdates = {
     });
   },
 
-  displayPastReservations() {
-    let bookings = manager.guest.pastGuestRoomBookings()
-    bookings.forEach(booking => {
+  displayPastReservations(bookingsData) {
+    bookingsData.forEach(booking => {
       let pastRes = $(`
       <div class="div_guest-past--bookings"><h4>CONFIRMATION NUMBER: ${booking.id}</h4>
       <p>${booking.date}</p><p>ROOM NUMBER: ${booking.roomNumber}</p>
@@ -134,10 +132,10 @@ const domUpdates = {
     $('.guest__total').append(`$${total}`)
   },
 
-  displayBookingsForGuest() {
+//for manager to get selected guest bookings
+  displayBookingsForGuest(bookingsData) {
     $('.ul__guest-bookings').html('');
-    let guestBookings = manager.getAllGuestBooking()
-    guestBookings.forEach(booking => {
+    bookingsData.forEach(booking => {
       let bookingsList = $(`<li><h6>Date: ${booking.date}<br> Room Number: ${booking.roomNumber}</h6></li></ul>`);
       $('.ul__guest-bookings').append(bookingsList);
     });
@@ -148,6 +146,8 @@ const domUpdates = {
     $('.ul__guest-bookings').prepend(newBooking);
   },
 
+
+  //displays on customer for 'Pick Avail Room'
   displayAvailableRoomsByType(roomsData, today) {
     roomsData.forEach(room => {
       let roomsList = $(`<option data-date='${today}' data-number='${room.number}' data-type='${room.roomType}' data-numBeds='${room.numBeds}' data-bedSize='${room.bedSize}' data-bidet='${room.bidet}'>A ${room.roomType} with ${room.numBeds} ${room.bedSize} bed(s), has bidet: ${room.bidet}</option>`)
