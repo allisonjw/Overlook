@@ -43,9 +43,8 @@ Project is running at http://localhost:8080/
 
 Go to `http://localhost:8080/` in your browser to view the siteJavaScript files to keep your code organized and readable. Webpack expects all of your code files to be in a specific place, or else it doesn't know how to combine them all behind the scenes.
 
-# /////REMOVE BELOW BEFORE DEPLOYING/////////
+## Screenshots
+![Login Page](https://github.com/allisonjw/Overlook/blob/master/src/images/index-html-2019-11-05-22_09_39.png)
+![Customer Page](https://github.com/allisonjw/Overlook/blob/master/src/images/customer-html-2019-11-05-22_12_27.png)
+![Manager Page](https://github.com/allisonjw/Overlook/blob/master/src/images/manager-html-2019-11-05-22_13_12.png)
 
-
-[GitHub Pages](https://pages.github.com/) is a great way to deploy your project to the web. Don't worry about this until your project is free of bugs and well tested!
-
-If you _are_ done, you can follow [this procedure](./gh-pages-procedure.md) to get your project live on GitHub Pages.
