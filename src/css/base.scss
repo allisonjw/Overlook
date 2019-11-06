@@ -304,8 +304,16 @@ h2 {
     }
 }
 
-.div_guest-past--bookings,
-.div_new-past--bookings {
+.div_guest-new--bookings,
+.div_guest-past--bookings {
   display: flex;
   flex-direction: column;
+    h4 {
+      font-size: .8em;
+      margin: 4px 0 16px 0;
+    }
+    p {
+      font-size: .7em;
+      margin: 2px 0 2px 0;
+    }
 }
