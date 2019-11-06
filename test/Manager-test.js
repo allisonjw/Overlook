@@ -35,7 +35,7 @@ describe('Manager', () => {
       chai.spy.on(domUpdates, 'displayAvailability', () => 14)  
       manager.findRoomsAvailableToday();
       //   expect(domUpdates.displayAvailability).to.have.been.called(1);
-      expect(manager.findRoomsAvailableToday('2019/11/18')).to.eql(14);
+      expect(manager.findRoomsAvailableToday('2019/11/18')).to.eql(15);
     });
   });
 
@@ -59,7 +59,7 @@ describe('Manager', () => {
       chai.spy.on(domUpdates, 'displayPercentRooms', () => 7)  
       manager.getPercentOfRoomsOccupied();
       //   expect(domUpdates.displayPercentRooms).to.have.been.called(1);
-      expect(manager.getPercentOfRoomsOccupied('2019/11/18')).to.equal(7)
+      expect(manager.getPercentOfRoomsOccupied('2019/11/18')).to.equal(6)
     });
   });
 

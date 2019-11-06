@@ -194,7 +194,19 @@ const bookings = [
     date: "2019/11/15",
     roomNumber: 15,
     roomServiceCharges: [ ]
-  },    
+  }, 
+  {
+    userID: 2,
+    date: "2019/11/11",
+    roomNumber: 2,
+    id: 1572998363243
+  },
+  {
+    userID: 2,
+    date: "2019/11/11",
+    roomNumber: 24,
+    id: 1572998379769
+  },   
 
 ];
 
