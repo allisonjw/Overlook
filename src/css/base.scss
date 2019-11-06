@@ -193,6 +193,10 @@ article {
   width: 85%;
 }
 
+h2 {
+  text-align: center;
+}
+
 .article__input-container {
   border: 1px solid black;
   display: inline-block;
@@ -206,7 +210,7 @@ article {
   display: flex;
   flex-direction: column;
   margin-left: 20px;
-  padding: 16px;
+  padding: 7%;
   width: 80%;
 }
 
@@ -215,8 +219,7 @@ article {
   height: 40px;
   width: 85%;
 }
-
-.add__guest--btn, 
+ 
 .add__booking--btn,
 .delete__booking--btn,
 .search__guest--btn,

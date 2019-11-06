@@ -11,11 +11,11 @@
   <header>
     <h1 class="header__title">Overlook Resort and <span class="header__span">Spa</span></h1>
     <p class="header__guest-name">Current Guest:<span id="header__current-guest"></span></p>
-    <button class="logout__btn">Logout</button>
+    <button tabindex="1" class="logout__btn">Logout</button>
     <nav>
-      <button class="main__btn" id="main">Main</button>
-      <button class="guest__btn" id="guest">Guest</button>
-      <button class="bookings__btn" id="rooms">Bookings</button>
+      <button tabindex="1" class="main__btn" id="main">Main</button>
+      <button tabindex="1" class="guest__btn" id="guest">Guest</button>
+      <button tabindex="1" class="bookings__btn" id="rooms">Bookings</button>
     </nav>
   </header>
   <main>
@@ -30,50 +30,34 @@
     </section>
     <section class="section__guest">
       <article class="article__guest">
-        <div class="article__input-container">
+        <form class="article__input-container">
           <p>Search for a guest</p>
-          <form class="div__form--search">
             <select class="article__input article__input-search" name="guest"></select>
             <button class="search__guest--btn">Submit</button>
           </form>
-          </div>
-        <div class="article__input-container">
+        <form class="article__input-container">
           <p>Guest Bookings</p>
           <ul class="ul__guest-bookings">
              <li>Please select a guest on the guest tab to view this information</li>
           </ul>
-        </div>
-        <div class="article__input-container">  
+        </form>
+        <form class="article__input-container">  
           <p>Total Spent For Guest:<span class="guest__total"></span></p>
-        </div>
+        </form>
       </article>
     </section>
     <section class="section__bookings">
       <article class="article__bookings">
-        <div class="article__input-container">
-            <p>Search Bookings</p>
-            <!-- <button type="button" class="article__input junior-suite_option">Junior Suite</button>
-            <button type="button" class="article__input suite_option">Suite</button>
-            <button type="button" class="article__input residential-suite_option">Residential Suite</button>
-            <button type="button" class="article__input single-room_option">Single Room</button>
-            <button type="button" class="article__input all-room_options">All Available Rooms</button>
-            <input class="article__input article__input-add" id="article__input-add" type="text" placeholder="yyyy/mm/dd"> -->
-            <button class="add__guest--btn">Submit</button>
-          </div>
-          <div class="article__input-container">
+          <form class="article__input-container">
             <p>Add Booking</p>
-            <form class="div__form--add">
               <select class="article__input article__input-bookings"></select>
               <button class="add__booking--btn">Submit</button>
-            </form>
-          </div>
-          <div class="article__input-container">
+          </form>
+          <form class="article__input-container">
             <p>Delete Booking</p>
-            <form class="div__form--delete">
-                <select class="article__input article__input-bookings" name="bookings"></select>
-                <button class="delete__booking--btn">Submit</button>
-            </form>
-          </div>
+              <select class="article__input article__input-bookings" name="bookings"></select>
+              <button class="delete__booking--btn">Submit</button>
+          </form>
       </article>
     </section>
   </main>
