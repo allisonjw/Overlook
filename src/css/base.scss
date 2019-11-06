@@ -294,7 +294,8 @@ h2 {
 .delete__booking--btn,
 .search__guest--btn,
 .search__date--btn,
-.book__room--btn {
+.book__room--btn,
+.book__filter--btn {
   border-radius: 5px;
   height: 30px;
   width: 60%;
@@ -306,8 +307,10 @@ h2 {
 
 .div_guest-new--bookings,
 .div_guest-past--bookings {
+  border: 1px solid black;
   display: flex;
   flex-direction: column;
+  padding: 3px;
     h4 {
       font-size: .8em;
       margin: 4px 0 16px 0;

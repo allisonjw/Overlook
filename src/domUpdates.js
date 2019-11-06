@@ -132,7 +132,7 @@ const domUpdates = {
     $('.guest__total').append(`$${total}`)
   },
 
-//for manager to get selected guest bookings
+//(WIP)FOR MNGR TO VIEW GUEST BOOKINGS
   displayBookingsForGuest(bookingsData) {
     $('.ul__guest-bookings').html('');
     bookingsData.forEach(booking => {

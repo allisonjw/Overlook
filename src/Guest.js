@@ -39,13 +39,9 @@ class Guest {
     return availRoomsToday.filter(room => room.roomType === type);
   }
 
-  newGuestBooking(id, date, roomNumber) {
-    let newBooking = {
-      userID: id,
-      date: date,
-      roomNumber: roomNumber
-    };
-    return newBooking;
+  newGuestBooking(today, roomNumber) {
+    let numberRoomNumber = Number(roomNumber);
+    return { userID: this.id, date: today, roomNumber: numberRoomNumber};
   }
 }
 

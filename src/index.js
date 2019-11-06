@@ -32,7 +32,7 @@ $('.login--btn').click((e) => {
   if (username === 'manager' && password === 'overlook2019') {
     window.location = './manager.html'
     
-  } else if (username.includes('customer') && password === 'overlook2019') {
+  } else if (username.includes('customer') && password === 'overlook2019') { 
     userID = Number(username.split('r')[1]);  
     window.location = './customer.html'
     customerHandler(userID)
@@ -43,7 +43,6 @@ $('.login--btn').click((e) => {
   return userID
 });
 
-
 let today = domUpdates.findCurrentDate();
 $('.main__date').html(domUpdates.displayCurrentDate());
 
@@ -52,9 +51,9 @@ const openHotel = (today) => {
   domUpdates.displayAvailability(manager.findRoomsAvailableToday(today));
   domUpdates.displayRevenue(manager.getTotalRevenueToday(today));
   domUpdates.displayGuestList(manager.users)
-  $('.users__bookings-total').append(`$${manager.guest.totalGuestRoomsSpent(50, today)}`)
-  $('.users__past-bookings').append(domUpdates.displayPastReservations(manager.guest.pastGuestRoomBookings(50, today)))
-  $('.users__upcoming-bookings').append(domUpdates.displayUpcomingReservations(manager.guest.futureGuestRoomBookings(50, today)))
+  $('.users__bookings-total').append(`$${manager.guest.totalGuestRoomsSpent(33, today)}`)
+  $('.users__past-bookings').append(domUpdates.displayPastReservations(manager.guest.pastGuestRoomBookings(33, today)))
+  $('.users__upcoming-bookings').append(domUpdates.displayUpcomingReservations(manager.guest.futureGuestRoomBookings(33, today)))
 }
 
 //POST METHOD (WIP)
@@ -68,9 +67,10 @@ $('.book__room--btn').click((e) => {
       id: Date.now(),
       userID: userID,
       date: $('.search__date--btn').val(),
-      roomNumber: num
+      roomNumber: parseInt(roomnumber)
     })
-  }).catch(error => console.log('POST', error))
+  }).then(response => console.log('Room Booked Successfully!', response))
+    .catch(error => console.log('postError', error))
   $(e.target).html('SUCCESS!')
 });
   
@@ -125,7 +125,7 @@ $('.roomsTotal__btn').click(() => {
 const customerHandler = (userID) => {
   let userName = manager.users.find(user => user.id === userID);
   console.log(userName.name)
-//   let guest = new Guest(userName.id, userName.name);
+  //   let guest = new Guest(userName.id, userName.name);
   $('#header__current-customer').append(`${userName.name}!`);
 }
 
@@ -159,7 +159,6 @@ $('.book__room--btn').click((e) => {
   let roomNumber = $('.article__type-filter').find(':selected').data('number')
     
   manager.guest.newGuestBooking(date, roomNumber);
-  domUpdates.displayNewBookingForGuest(date, roomNumber)
 });
 
 //SEARCH GUEST, SHOW IN HEAD AND DISPLAY RELEVANT INFO
