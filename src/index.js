@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import './css/base.scss';
 import Manager from '../src/Manager';
+import Guest from './Guest';
 import domUpdates from './domUpdates.js';
 
 
@@ -52,7 +53,7 @@ const openHotel = (today) => {
   domUpdates.displayGuestList(manager.users)
   domUpdates.displayPastReservations(manager.guest.pastGuestRoomBookings(25));
   domUpdates.displayUpcomingReservations(manager.guest.futureGuestRoomBookings(42));
-//   domUpdates.displayTotalRoomDollars(manager.guest.totalGuestRoomsSpent());
+  domUpdates.displayTotalRoomDollars(manager.guest.totalGuestRoomsSpent());
 }
 
 //POST METHOD (WIP)
@@ -167,11 +168,7 @@ $('.search__guest--btn').click((e) => {
   $('.ul__guest-bookings').html('');
   let allBookings = manager.getAllGuestBooking()
   console.log(allBookings)
-  allBookings.forEach(booking => {
-    let bookingsList = $(`<li><h6>Date: ${booking.date}<br> Room Number: ${booking.roomNumber}</h6></li></ul>`);
-    $('.ul__guest-bookings').append(bookingsList);
-  });
-  //   domUpdates.displayBookingsForGuest(bookings);
+domUpdates.displayBookingsForGuest(allBookings);
   domUpdates.displayTotalRoomDollars(guestTotal)
 });
   

@@ -135,14 +135,14 @@ const domUpdates = {
     $('.guest__total').append(`$${total}`)
   },
 
-  // displayBookingsForGuest(bookings) {
-  //   $('.ul__guest-bookings').html('');
-  //   let allBookings = manager.getAllGuestBooking()
-  //   allBookings.forEach(booking => {
-  //     let bookingsList = $(`<li><h6>Date: ${booking.date}<br> Room Number: ${booking.roomNumber}</h6></li></ul>`);
-  //     $('.ul__guest-bookings').append(bookingsList);
-  //   });
-  // },
+  displayBookingsForGuest() {
+    $('.ul__guest-bookings').html('');
+    let guestBookings = manager.getAllGuestBooking()
+    guestBookings.forEach(booking => {
+      let bookingsList = $(`<li><h6>Date: ${booking.date}<br> Room Number: ${booking.roomNumber}</h6></li></ul>`);
+      $('.ul__guest-bookings').append(bookingsList);
+    });
+  },
 
   displayNewBookingForGuest(date, roomNumber) {
     let newBooking = $(`<li><h6>Date: ${date}<br> Room Number: ${roomNumber}</h6></li>`);

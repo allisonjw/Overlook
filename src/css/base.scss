@@ -114,14 +114,11 @@ nav {
   position: absolute;
     @include sm {
       text-align: center;
-      display: contents;
+      top: 10%;
     }
     @include md {
       text-align: center;
-      display: contents;
-    }
-    @include lg {
-      display: contents;
+      top: 12%;
     }
 }
 
