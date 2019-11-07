@@ -23,7 +23,6 @@ let roomsData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/
   
 Promise.all([usersData, bookingsData, roomsData])
   .then(data => manager = new Manager(data[0].users, data[1].bookings, data[2].rooms))
-  .then(data => console.log(manager.guest))
   .then(data => openHotel(domUpdates.findCurrentDate()))
   .catch(error => console.log(error))
  
@@ -81,7 +80,7 @@ $('.book__room--btn').click((e, userID) => {
     .then(response => console.log('Thanks for your Reservation!!', response))
     .catch(error => console.log('There was error with your Reservation', error))
 });
-// }
+
 
 //DELETE METHOD
 const deleteUserBooking = (deleteBody) => {
@@ -112,7 +111,6 @@ $('.delete__booking--btn').click((e) => {
 
 //SECTIONS TO HIDE ON PAGE LOAD
 $('.section__guest, .article__bookRoom-container, .section__bookings, .header__guest-name, .section__guest-resHistory, .section__guest-roomsTotal').hide();
-
 
 //EVENT HANDLERS FOR DOM
 $('.main__btn').click(()  => {
