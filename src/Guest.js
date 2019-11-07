@@ -3,11 +3,10 @@ import domUpdates from './domUpdates.js';
 
 
 class Guest {
-  constructor(bookingsData, roomsData, id, name) {
+  constructor(usersData, bookingsData, roomsData) {
     this.bookings = bookingsData;
     this.rooms = roomsData;
-    this.id = id;
-    this.name = name;
+    this.id = usersData.id;
   }
 
   pastGuestRoomBookings(id, today) {
@@ -38,8 +37,8 @@ class Guest {
     let availRoomsToday = this.roomsAvailableForDate(today);
     return availRoomsToday.filter(room => room.roomType === type);
   }
-
-  newGuestBooking(guestId, date, room) {
+  
+  makeNewBooking(guestId, date, room) {
     return {
       userID: guestId,
       date: date,

@@ -1,5 +1,6 @@
 import {expect} from 'chai';
 import Guest from '../src/Guest';
+import usersData from '../test-data/users-data.js';
 import roomsData from '../test-data/rooms-data.js';
 import bookingsData from '../test-data/bookings-data.js';
 
@@ -8,7 +9,7 @@ describe('Guest', () => {
   let guest;
 
   beforeEach(() => {
-    guest = new Guest(bookingsData, roomsData, 1);
+    guest = new Guest(usersData, bookingsData, roomsData, 1);
   });
 
   it('should be an instance of Guest', () => {
@@ -306,9 +307,9 @@ describe('Guest', () => {
     });
   });
 
-  describe('newGuestBooking', () => {
-    it('should be able make a new booking', () => {
-      expect(guest.newGuestBooking(1, '2019/11/03', 10)).to.eql([{ userID: 1, date: "2019/11/03", roomNumber: 10}])
+  describe('makeNewBooking', () => {
+    it('should be able to make a new booking for themselves', () => {
+      expect(guest.makeNewBooking(1, '2020/10/12', 3).userID).to.equal(1);
     });
   });
 

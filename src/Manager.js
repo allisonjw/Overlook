@@ -9,7 +9,7 @@ class Manager {
     this.bookings = bookingsData;
     this.rooms = roomsData;
     this.id = id;
-    this.guest = new Guest(bookingsData, roomsData, id)
+    this.guest = new Guest(usersData, bookingsData, roomsData)
     // this.user = this.findGuestById(id)
     this.currentGuest;
   }

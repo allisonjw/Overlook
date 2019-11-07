@@ -57,30 +57,31 @@ const openHotel = (today) => {
   $('.users__upcoming-bookings').append(domUpdates.displayUpcomingReservations(manager.guest.futureGuestRoomBookings(32, today)));
 }
 
+ 
 //POST METHOD (WIP)
 $('.book__room--btn').click((e, userID) => {
-  e.preventDefault() 
+  e.preventDefault();
+  let userName = manager.users.find(user => user.id === userID);
+  let currentGuest = manager.findGuestById(userID)
+  console.log(currentGuest.id)
   let date = $('.article__date-search').val();
-  let datePicked = domUpdates.fixDate(date);
-  var roomNum = $(".customer-bookings-filter").attr('data-id')
-    
+  let bookingDate = domUpdates.fixDate(date);
+  let roomNumber = parseInt($('.clicked').html().split('x')[1]);
+  let postBody = manager.guest.makeNewBooking(userID, bookingDate, roomNumber);
+
   fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', { 
     method: 'Post', 
     headers: { 
       'Content-Type': "application/json" 
     }, 
-    body: JSON.stringify({ 
-      userID: userID, 
-      date: datePicked, 
-      roomNumber: parseInt(roomNum) 
-    }) 
-  }).catch(data => console.log('There was error with your Reservation', data))
-    
-  alert("Thanks for your Reservation!!");
+    body: JSON.stringify(postBody)
+  })
+    .then(response => console.log('Thanks for your Reservation!!', response))
+    .catch(error => console.log('There was error with your Reservation', error))
 });
 
 //DELETE METHOD
-function deleteUserBooking(deleteBody) {
+const deleteUserBooking = (deleteBody) => {
   fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings',
     {
       method: 'DELETE',
@@ -93,6 +94,8 @@ function deleteUserBooking(deleteBody) {
     .catch(error => console.log('Delete Fail', error))
 }
 
+
+//CREATE THE BODY FOR DELETE
 $('.delete__booking--btn').click((e) => {
   e.preventDefault();
   let deleteConfirm = $('#cancel-booking').val();
