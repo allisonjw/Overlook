@@ -62,7 +62,7 @@ const domUpdates = {
   
   displayGuestList(usersData) {
     usersData.forEach(users => {
-      $('.article__input-search').append(`<option value="${users.name}">${users.name}</option>`);
+      $('.article__input-search').append(`<option value="${users.id}" id="${users.id}-option">${users.id} ${users.name}</option>`);
     })
   },
 
@@ -134,24 +134,30 @@ const domUpdates = {
 
 //(WIP)FOR MNGR TO VIEW GUEST BOOKINGS
   displayBookingsForGuest(bookingsData) {
-    $('.ul__guest-bookings').html('');
+    // $('.ul__guest-bookings').html('');
     bookingsData.forEach(booking => {
       let bookingsList = $(`<li><h6>Date: ${booking.date}<br> Room Number: ${booking.roomNumber}</h6></li></ul>`);
       $('.ul__guest-bookings').append(bookingsList);
     });
   },
 
-  displayNewBookingForGuest(date, roomNumber) {
-    let newBooking = $(`<li><h6>Date: ${date}<br> Room Number: ${roomNumber}</h6></li>`);
-    $('.ul__guest-bookings').prepend(newBooking);
-  },
+  //(WIP)for manager to view
+  // displayBookingsForGuest(room) {
+  //   $('.ul__guest-bookings').append(`
+  //   <p>Room Number: <span>${room.number}</span></p>
+  //   <p>Number Of Beds: ${room.numBeds}</p>
+  //   <p>Size of Beds: ${room.bedSize}</p>
+  //   <p>Bidet: ${room.bidet}</p>
+  //   <p>Cost Per Night: ${room.costPerNight}</p>
+  // `);
+  // },
 
 
   //displays on customer for 'Pick Avail Room'
   displayAvailableRoomsByType(roomsData, today) {
     roomsData.forEach(room => {
       let roomsList = $(`<option data-date='${today}' data-number='${room.number}' data-type='${room.roomType}' data-numBeds='${room.numBeds}' data-bedSize='${room.bedSize}' data-bidet='${room.bidet}'>A ${room.roomType} with ${room.numBeds} ${room.bedSize} bed(s), has bidet: ${room.bidet}</option>`)
-      $('.article__type-filter').append(roomsList);
+      $('.article__avail-rooms').append(roomsList);
     });
   }
 

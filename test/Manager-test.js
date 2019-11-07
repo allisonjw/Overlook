@@ -77,17 +77,13 @@ describe('Manager', () => {
     });
   });
 
-  describe('getAPIFetchData', () => {
-    it('should get fetched data from API', () => {
-      let fetchSpy = chai.spy.on(global, 'fetch', () => {
-        return new Promise((resolve, reject) => {
-          resolve({message: 'Data Has Been Fetched'});    
-        })
-      });
-      manager.getAPIFetchData('https://exmpl.in/api/test/2', 'message');
-      expect(fetchSpy).to.have.been.called(1);
-    });
+  describe('findBooking', () => {
+    it('should be able to find a specific booking id by date and room number', () => {
+      expect(manager.findBooking(48,'2019/11/14', 18)).to.equal(1572293130161)
+    })
   });
+
+ 
 
 
 });

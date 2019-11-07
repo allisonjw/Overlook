@@ -8,8 +8,8 @@ class Manager {
     this.users = usersData;
     this.bookings = bookingsData;
     this.rooms = roomsData;
-    this.id = usersData.id;
-    this.guest = new Guest(bookingsData, roomsData)
+    this.id = id;
+    this.guest = new Guest(bookingsData, roomsData, id)
     // this.user = this.findGuestById(id)
     this.currentGuest;
   }
@@ -68,15 +68,26 @@ class Manager {
     }
   }
 
-  getAPIFetchData(url, type) {
-    return fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        this.data = data[type];
-        return this.data
-      })
-      .catch(err => console.log(err));
+  findBooking(userID, date, room ) {
+    let cat = this.guest.futureGuestRoomBookings(userID, date, room).find(booking => booking.roomNumber === room && booking.date === date)
+    console.log(cat)
   }
+
+  
+  deleteBooking(id) {
+    fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', {
+      method: 'DELETE',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        id: id
+      })
+    }).then(() => {
+      alert('Booking Deleted!');
+    }).catch(() => 'Delete failed to happen');
+  }
+
 }
       
 export default Manager;

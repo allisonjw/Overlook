@@ -9,8 +9,9 @@ import './images/big-leaf-bright-color-1029640.jpg';
 import './images/beach-deck-dock-247447.jpg';
 import './images/calm-clouds-exotic-297984.jpg';
 
-let userID;  //(WIP) -HOW TO GET USERID
+let userID;  //(WIP) WHY WONT IT PULL IF GLOBAL
 let manager;
+let guestID;  //(WIP) WHY WONT IT PULL IF GLOBAL
 
 
 let usersData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users').then(response => response.json());
@@ -51,28 +52,49 @@ const openHotel = (today) => {
   domUpdates.displayAvailability(manager.findRoomsAvailableToday(today));
   domUpdates.displayRevenue(manager.getTotalRevenueToday(today));
   domUpdates.displayGuestList(manager.users)
-  $('.users__bookings-total').append(`$${manager.guest.totalGuestRoomsSpent(33, today)}`)
-  $('.users__past-bookings').append(domUpdates.displayPastReservations(manager.guest.pastGuestRoomBookings(33, today)))
-  $('.users__upcoming-bookings').append(domUpdates.displayUpcomingReservations(manager.guest.futureGuestRoomBookings(33, today)))
+  $('.users__bookings-total').append(`$${manager.guest.totalGuestRoomsSpent(32, today)}`);
+  $('.users__past-bookings').append(domUpdates.displayPastReservations(manager.guest.pastGuestRoomBookings(32, today)));
+  $('.users__upcoming-bookings').append(domUpdates.displayUpcomingReservations(manager.guest.futureGuestRoomBookings(32, today)));
 }
 
 //POST METHOD (WIP)
-$('.book__room--btn').click((e) => {
-  fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', {
-    method: 'POST',
-    headers: {
-      'Content-Type': "application/json"
-    },
-    body: JSON.stringify({
-      id: Date.now(),
-      userID: userID,
-      date: $('.search__date--btn').val(),
-      roomNumber: parseInt(roomnumber)
-    })
-  }).then(response => console.log('Room Booked Successfully!', response))
-    .catch(error => console.log('postError', error))
-  $(e.target).html('SUCCESS!')
+$('.book__room--btn').click((e, userID) => {
+  e.preventDefault() 
+  let date = $('.article__date-search').val();
+  let datePicked = domUpdates.fixDate(date);
+  var roomNum = $(".customer-bookings-filter").attr('data-id')
+    
+  fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', { 
+    method: 'Post', 
+    headers: { 
+      'Content-Type': "application/json" 
+    }, 
+    body: JSON.stringify({ 
+      userID: userID, 
+      date: datePicked, 
+      roomNumber: parseInt(roomNum) 
+    }) 
+  }).catch(data => console.log('There was error with your Reservation', data))
+    
+  alert("Thanks for your Reservation!!");
 });
+
+//DELETE METHOD
+// $('.manager-bookings-list').click(() => {
+//     let bookingId = manager.findBookingId(guestId, bookingDate);
+//     fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', {
+//       method: 'DELETE',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify({
+//         id: bookingId
+//       })
+//     }).then(() => hideDeletedBooking())
+//       .catch(error => {
+//         console.log(error);
+//       });
+// });
   
 
 //SECTIONS TO HIDE ON PAGE LOAD
@@ -124,9 +146,13 @@ $('.roomsTotal__btn').click(() => {
 
 const customerHandler = (userID) => {
   let userName = manager.users.find(user => user.id === userID);
-  console.log(userName.name)
-  //   let guest = new Guest(userName.id, userName.name);
-  $('#header__current-customer').append(`${userName.name}!`);
+  let currentGuest = manager.findGuestById(userID)
+  console.log(currentGuest.id)
+//   console.log(userName.id)
+//   $('.users__bookings-total').append(`$${manager.guest.totalGuestRoomsSpent(currentGuest.id, today)}`)
+//   $('.users__past-bookings').append(domUpdates.displayPastReservations(manager.guest.pastGuestRoomBookings(currentGuest.id, today)))
+//   $('.users__upcoming-bookings').append(domUpdates.displayUpcomingReservations(manager.guest.futureGuestRoomBookings(currentGuest.id, today)))
+//   $('#header__current-customer').text(userName.name);
 }
 
 //DROP DOWN CALENDAR //SEARCH ROOMS
@@ -140,7 +166,7 @@ $('.search__date--btn').click((e) => {
 }); 
 
 $('.article__room-type').on('change', () => {
-  $('.article__type-filter').attr('disabled', false);
+  $('.article__avail-rooms').attr('disabled', false);
   let type = $('.article__room-type').find(':selected').val();
   let date = $('.article__date-search').val();
   let roomsByDate = manager.guest.roomsAvailableForDate(date);
@@ -148,36 +174,33 @@ $('.article__room-type').on('change', () => {
   domUpdates.displayAvailableRoomsByType(roomsByType, date);
 });
   
-$('.article__type-filter').on('change', () => {
+$('.article__avail-rooms').on('change', () => {
   $('.book__room--btn').attr('disabled', false);
 });
   
 $('.book__room--btn').click((e) => {
   e.preventDefault();  
   $('.book__room--btn').attr('disabled', true);
-  let date = $('.article__type-filter').find(':selected').data('date');
-  let roomNumber = $('.article__type-filter').find(':selected').data('number')
+  let date = $('.article__avail-rooms').find(':selected').data('date');
+  let roomNumber = $('.article__avail-rooms').find(':selected').data('number')
     
   manager.guest.newGuestBooking(date, roomNumber);
+//   domUpdates.displayNewBookingForGuest(date, roomNumber)
 });
+
 
 //SEARCH GUEST, SHOW IN HEAD AND DISPLAY RELEVANT INFO
 $('.search__guest--btn').click((e) => {
   e.preventDefault()
-  let pickedGuest = $('.article__input-search').val;
-  let foundGuest = manager.filterGuestByName(pickedGuest)
-  manager.currentGuest = foundGuest;
-  let guestID = manager.findGuestById();
-  console.log(guestID)
-  let name = $('.article__input-search option:selected').text()
-  let guestTotal = manager.guest.totalGuestRoomsSpent(userID)
-  handleGuestInfo(pickedGuest)
+  guestID = $('.article__input-search').val();
+  let name = $('.article__input-search option:selected').text().split(' ')[1]
+  handleGuestInfo(name)
+  let selectedGuest = manager.findGuestById(guestID) //gives guest obj
   domUpdates.displayGuestName(name);
+  $('.guest__total').append(`$${manager.guest.totalGuestRoomsSpent(selectedGuest.id, today)}`);
   $('.ul__guest-bookings').html('');
-  let allBookings = manager.getAllGuestBooking()
-  console.log(allBookings)
-  domUpdates.displayBookingsForGuest(allBookings);
-  domUpdates.displayTotalRoomDollars(guestTotal)
+  $('.ul__guest-bookings').append(domUpdates.displayBookingsForGuest(manager.guest.futureGuestRoomBookings(selectedGuest.id, today)));
+
 });
   
 const handleGuestInfo = (guestName) => {
