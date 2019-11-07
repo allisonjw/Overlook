@@ -1,11 +1,9 @@
-import chai, {expect} from 'chai';
+import {expect} from 'chai';
 import Manager from '../src/Manager';
 import domUpdates from '../src/domUpdates.js';
 import usersData from '../test-data/users-data.js';
 import roomsData from '../test-data/rooms-data.js';
 import bookingsData from '../test-data/bookings-data.js';
-import spies from 'chai-spies';
-chai.use(spies);
 
 describe('Manager', () => {
 
@@ -31,9 +29,6 @@ describe('Manager', () => {
 
   describe('findRoomsAvailableToday', () => {
     it('should return number of room available today', () => {
-      chai.spy.on(domUpdates, 'displayAvailability', () => 14)  
-      manager.findRoomsAvailableToday();
-      //   expect(domUpdates.displayAvailability).to.have.been.called(1);
       expect(manager.findRoomsAvailableToday('2019/11/18')).to.eql(15);
     });
   });
@@ -46,18 +41,12 @@ describe('Manager', () => {
  
   describe('getTotalRevenueToday', () => {
     it('should return total revenue for today', () => {
-      chai.spy.on(domUpdates, 'displayRevenue', () => 340)  
-      manager.getTotalRevenueToday();
-      //   expect(domUpdates.displayRevenue).to.have.been.called(1);
       expect(manager.getTotalRevenueToday('2019/11/18')).to.equal(340);
     });
   });
 
   describe('getPercentOfRoomsOccupied', () => {
     it('should return percent of rooms occupied for today', () => {
-      chai.spy.on(domUpdates, 'displayPercentRooms', () => 7)  
-      manager.getPercentOfRoomsOccupied();
-      //   expect(domUpdates.displayPercentRooms).to.have.been.called(1);
       expect(manager.getPercentOfRoomsOccupied('2019/11/18')).to.equal(6)
     });
   });

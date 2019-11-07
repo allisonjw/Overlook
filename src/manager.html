@@ -50,7 +50,23 @@
       <article class="article__bookings">
           <form class="article__input-container">
             <p>Add Booking</p>
-              <select class="article__input article__input-bookings"></select>
+            <label for="date">Select a Date
+                <input id="date" class="article__input article__date-search" type="date" placeholder="YYYY/MM/DD" min="2019-07-30"
+                max="2019-12-31">
+              </label>
+                <!-- <button class="search__date--btn">Submit</button> -->
+              <label for="type">Filter By Room Type</label>
+                <select id="type" class="article__input article__room-type">
+                  <option value="residential suite">Residential Suite</option>
+                  <option value="junior suite">Junior Suite</option>
+                  <option value="suite">Suite</option>
+                  <option value="single room">Single Room</option>
+                </select>
+                <label for="filter">Pick Available Room
+                <select id="filter" class="article__input article__avail-rooms">
+                  <option>Choose an available room</option>
+                </select>
+               </label>
               <button class="add__booking--btn">Submit</button>
           </form>
           <form class="article__input-container">

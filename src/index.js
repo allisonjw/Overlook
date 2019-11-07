@@ -12,6 +12,7 @@ import './images/calm-clouds-exotic-297984.jpg';
 let userID;  //(WIP) WHY WONT IT PULL IF GLOBAL
 let manager;
 let guestID;  //(WIP) WHY WONT IT PULL IF GLOBAL
+let currentGuest;
 
 
 let usersData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users').then(response => response.json());
@@ -56,18 +57,20 @@ const openHotel = (today) => {
   $('.users__past-bookings').append(domUpdates.displayPastReservations(manager.guest.pastGuestRoomBookings(32, today)));
   $('.users__upcoming-bookings').append(domUpdates.displayUpcomingReservations(manager.guest.futureGuestRoomBookings(32, today)));
 }
-
- 
+console.log(currentGuest)
 //POST METHOD (WIP)
+// const postUserBooking = (userID) => {
 $('.book__room--btn').click((e, userID) => {
   e.preventDefault();
   let userName = manager.users.find(user => user.id === userID);
-  let currentGuest = manager.findGuestById(userID)
-  console.log(currentGuest.id)
-  let date = $('.article__date-search').val();
-  let bookingDate = domUpdates.fixDate(date);
-  let roomNumber = parseInt($('.clicked').html().split('x')[1]);
-  let postBody = manager.guest.makeNewBooking(userID, bookingDate, roomNumber);
+  console.log(userName)
+  currentGuest = manager.findGuestById(userID)
+  console.log(currentGuest)
+  let dateVal = $('.article__date-search').val();
+  let date = domUpdates.fixDate(dateVal);
+  // let bookingDate = $('.article__avail-rooms').find(':selected').data('date')
+  let roomNumber = $('.article__avail-rooms').find(':selected').data('number');
+  let postBody = manager.guest.makeNewBooking(userID, date, roomNumber);
 
   fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', { 
     method: 'Post', 
@@ -79,6 +82,7 @@ $('.book__room--btn').click((e, userID) => {
     .then(response => console.log('Thanks for your Reservation!!', response))
     .catch(error => console.log('There was error with your Reservation', error))
 });
+// }
 
 //DELETE METHOD
 const deleteUserBooking = (deleteBody) => {
@@ -109,7 +113,7 @@ $('.delete__booking--btn').click((e) => {
 }); 
 
 //SECTIONS TO HIDE ON PAGE LOAD
-$('.section__guest, .section__bookings, .header__guest-name, .section__guest-resHistory, .section__guest-roomsTotal').hide();
+$('.section__guest, .article__bookRoom-container, .section__bookings, .header__guest-name, .section__guest-resHistory, .section__guest-roomsTotal').hide();
 
 
 //EVENT HANDLERS FOR DOM
@@ -155,16 +159,30 @@ $('.roomsTotal__btn').click(() => {
   domUpdates.totalSpentHandler()
 });
 
+$('.access__booking--btn').click(() => {
+  $('.article__bookRoom-container').show();
+  $('.article__enterBookForm-container').hide() 
+})
+
 const customerHandler = (userID) => {
-  let userName = manager.users.find(user => user.id === userID);
-  let currentGuest = manager.findGuestById(userID)
-  console.log(currentGuest.id)
-//   console.log(userName.id)
-//   $('.users__bookings-total').append(`$${manager.guest.totalGuestRoomsSpent(currentGuest.id, today)}`)
-//   $('.users__past-bookings').append(domUpdates.displayPastReservations(manager.guest.pastGuestRoomBookings(currentGuest.id, today)))
-//   $('.users__upcoming-bookings').append(domUpdates.displayUpcomingReservations(manager.guest.futureGuestRoomBookings(currentGuest.id, today)))
-//   $('#header__current-customer').text(userName.name);
-}
+  $('.access__booking--btn').click(() => {
+    let userName = manager.users.find(user => user.id === userID);
+    console.log(userName.name)
+    currentGuest = manager.findGuestById(userID)
+    console.log(currentGuest)
+    guestID = $('.article__input-search').val();
+    let loginName = $('.article__input-search option:selected').text().split(' ')[1]
+    console.log(loginName)
+    handleGuestInfo(name)
+    domUpdates.displayGuestNameCustomer(userName.name);
+    //   console.log(userName.id)
+    //   $('.users__bookings-total').append(`$${manager.guest.totalGuestRoomsSpent(currentGuest.id, today)}`)
+    //   $('.users__past-bookings').append(domUpdates.displayPastReservations(manager.guest.pastGuestRoomBookings(currentGuest.id, today)))
+    //   $('.users__upcoming-bookings').append(domUpdates.displayUpcomingReservations(manager.guest.futureGuestRoomBookings(currentGuest.id, today)))
+    //   $('#header__current-customer').text(userName.name);
+  });
+}  
+
 
 //DROP DOWN CALENDAR //SEARCH ROOMS
 $('.search__date--btn').click((e) => {
@@ -189,15 +207,13 @@ $('.article__avail-rooms').on('change', () => {
   $('.book__room--btn').attr('disabled', false);
 });
   
-$('.book__room--btn').click((e) => {
-  e.preventDefault();  
-  $('.book__room--btn').attr('disabled', true);
-  let date = $('.article__avail-rooms').find(':selected').data('date');
-  let roomNumber = $('.article__avail-rooms').find(':selected').data('number')
-    
-  manager.guest.newGuestBooking(date, roomNumber);
-//   domUpdates.displayNewBookingForGuest(date, roomNumber)
-});
+// $('.book__room--btn').click((e) => {
+//   e.preventDefault();  
+// //   $('.book__room--btn').attr('disabled', true);
+//   let date = $('.article__avail-rooms').find(':selected').data('date');
+//   let roomNumber = $('.article__avail-rooms').find(':selected').data('number')
+//   manager.guest.makeNewBooking(date, roomNumber);
+// });
 
 
 //SEARCH GUEST, SHOW IN HEAD AND DISPLAY RELEVANT INFO
@@ -207,7 +223,7 @@ $('.search__guest--btn').click((e) => {
   let name = $('.article__input-search option:selected').text().split(' ')[1]
   handleGuestInfo(name)
   let selectedGuest = manager.findGuestById(guestID) //gives guest obj
-  domUpdates.displayGuestName(name);
+  domUpdates.displayGuestNameManager(name);
   $('.guest__total').append(`$${manager.guest.totalGuestRoomsSpent(selectedGuest.id, today)}`);
   $('.ul__guest-bookings').html('');
   $('.ul__guest-bookings').append(domUpdates.displayBookingsForGuest(manager.guest.futureGuestRoomBookings(selectedGuest.id, today)));

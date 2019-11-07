@@ -56,8 +56,12 @@ const domUpdates = {
     $('.main__revenue').append(`$${revenue}`);
   },
   
-  displayGuestName(name) {
+  displayGuestNameManager(name) {
     $('#header__current-guest').append(name);
+  },
+
+  displayGuestNameCustomer(name) {
+    $('#header__current-customer').append(name);
   },
   
   displayGuestList(usersData) {
@@ -134,24 +138,11 @@ const domUpdates = {
 
 //(WIP)FOR MNGR TO VIEW GUEST BOOKINGS
   displayBookingsForGuest(bookingsData) {
-    // $('.ul__guest-bookings').html('');
     bookingsData.forEach(booking => {
       let bookingsList = $(`<li><h6>Date: ${booking.date}<br> Room Number: ${booking.roomNumber}</h6></li></ul>`);
       $('.ul__guest-bookings').append(bookingsList);
     });
   },
-
-  //(WIP)for manager to view
-  // displayBookingsForGuest(room) {
-  //   $('.ul__guest-bookings').append(`
-  //   <p>Room Number: <span>${room.number}</span></p>
-  //   <p>Number Of Beds: ${room.numBeds}</p>
-  //   <p>Size of Beds: ${room.bedSize}</p>
-  //   <p>Bidet: ${room.bidet}</p>
-  //   <p>Cost Per Night: ${room.costPerNight}</p>
-  // `);
-  // },
-
 
   //displays on customer for 'Pick Avail Room'
   displayAvailableRoomsByType(roomsData, today) {
