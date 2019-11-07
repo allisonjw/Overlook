@@ -20,16 +20,6 @@ class Manager {
     });
   }
 
-  getAllGuestBooking(id = this.id) {
-    let myBookings = []
-    this.bookings.forEach(booking => {
-      if (booking.userID === id) {
-        myBookings.push(booking)
-      }
-    })
-    return myBookings
-  }
-  
   findRoomsAvailableToday(today) {
     let roomsBooked = this.bookings.filter(booking => booking.date === today);
     return this.rooms.length - roomsBooked.length;
@@ -68,24 +58,9 @@ class Manager {
     }
   }
 
-  findBooking(userID, date, room ) {
-    let cat = this.guest.futureGuestRoomBookings(userID, date, room).find(booking => booking.roomNumber === room && booking.date === date)
-    console.log(cat)
-  }
-
-  
-  deleteBooking(id) {
-    fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', {
-      method: 'DELETE',
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        id: id
-      })
-    }).then(() => {
-      alert('Booking Deleted!');
-    }).catch(() => 'Delete failed to happen');
+  deleteBookingID(booking) {
+    let numberBooking = Number(booking);
+    return { id: numberBooking };
   }
 
 }

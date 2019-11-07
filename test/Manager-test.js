@@ -29,15 +29,6 @@ describe('Manager', () => {
     });
   });
 
-  describe('getAllGuestBooking', () => {
-    it('should be to return all guest bookings', () => {
-      expect(manager.getAllGuestBooking(2)).to.eql([
-        { userID: 2, date: '2019/11/11', roomNumber: 2, id: 1572998363243 },
-        { userID: 2, date: '2019/11/11', roomNumber: 24, id: 1572998379769 }
-      ])
-    });
-  });
-
   describe('findRoomsAvailableToday', () => {
     it('should return number of room available today', () => {
       chai.spy.on(domUpdates, 'displayAvailability', () => 14)  
@@ -77,13 +68,11 @@ describe('Manager', () => {
     });
   });
 
-  describe('findBooking', () => {
-    it('should be able to find a specific booking id by date and room number', () => {
-      expect(manager.findBooking(48,'2019/11/14', 18)).to.equal(1572293130161)
-    })
+  describe('deleteBookingID', () => {
+    it('should be able to delete bookings', () => {
+      expect(manager.deleteBookingID(1572293130160)).to.eql({ id: 1572293130160 })
+    });
   });
-
- 
 
 
 });

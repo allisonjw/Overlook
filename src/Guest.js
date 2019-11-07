@@ -47,9 +47,6 @@ class Guest {
     };
   }
 
-  // findBookingId(guestId, date) {
-  //   return this.bookings.find(booking => booking.userID === guestId && booking.date === date).id;
-  // }
 }
 
 export default Guest;

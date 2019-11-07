@@ -80,22 +80,30 @@ $('.book__room--btn').click((e, userID) => {
 });
 
 //DELETE METHOD
-// $('.manager-bookings-list').click(() => {
-//     let bookingId = manager.findBookingId(guestId, bookingDate);
-//     fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', {
-//       method: 'DELETE',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify({
-//         id: bookingId
-//       })
-//     }).then(() => hideDeletedBooking())
-//       .catch(error => {
-//         console.log(error);
-//       });
-// });
-  
+function deleteUserBooking(deleteBody) {
+  fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings',
+    {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': "application/json"
+      },
+      body: JSON.stringify(deleteBody)
+    })
+    .then(response => console.log('Delete Processed', response))
+    .catch(error => console.log('Delete Fail', error))
+}
+
+$('.delete__booking--btn').click((e) => {
+  e.preventDefault();
+  let deleteConfirm = $('#cancel-booking').val();
+  guestID = $('.article__input-search').val();
+  let selectedGuest = manager.findGuestById(guestID);
+  let findUserBookingID = manager.guest.futureGuestRoomBookings(selectedGuest.id, today).map(booking => booking.id)
+  if (findUserBookingID.includes(Number(deleteConfirm))) { 
+    let deleteBody = manager.deleteBookingID(deleteConfirm);
+    deleteUserBooking(deleteBody)
+  }
+}); 
 
 //SECTIONS TO HIDE ON PAGE LOAD
 $('.section__guest, .section__bookings, .header__guest-name, .section__guest-resHistory, .section__guest-roomsTotal').hide();
