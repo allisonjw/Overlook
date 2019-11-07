@@ -4,13 +4,11 @@ import domUpdates from './domUpdates.js';
 
 
 class Manager {
-  constructor(usersData, bookingsData, roomsData, id) {
+  constructor(usersData, bookingsData, roomsData) {
     this.users = usersData;
     this.bookings = bookingsData;
     this.rooms = roomsData;
-    this.id = id;
     this.guest = new Guest(usersData, bookingsData, roomsData)
-    // this.user = this.findGuestById(id)
     this.currentGuest;
   }
 

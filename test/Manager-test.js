@@ -1,6 +1,5 @@
 import {expect} from 'chai';
 import Manager from '../src/Manager';
-import domUpdates from '../src/domUpdates.js';
 import usersData from '../test-data/users-data.js';
 import roomsData from '../test-data/rooms-data.js';
 import bookingsData from '../test-data/bookings-data.js';
@@ -10,7 +9,7 @@ describe('Manager', () => {
   let manager;
 
   beforeEach(() => {
-    manager = new Manager(usersData, bookingsData, roomsData, 1);
+    manager = new Manager(usersData, bookingsData, roomsData);
   })
 
   it('should be a function', () => {

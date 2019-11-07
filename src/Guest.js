@@ -1,6 +1,3 @@
-import Manager from '../src/Manager';
-import domUpdates from './domUpdates.js';
-
 
 class Guest {
   constructor(usersData, bookingsData, roomsData) {

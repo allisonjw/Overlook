@@ -48,13 +48,12 @@
     </section>
     <section class="section__bookings">
       <article class="article__bookings">
-          <form class="article__input-container">
-            <p>Add Booking</p>
+          <form class="article__input-container add-res">
+            <h2>Add Booking</h2>
             <label for="date">Select a Date
                 <input id="date" class="article__input article__date-search" type="date" placeholder="YYYY/MM/DD" min="2019-07-30"
                 max="2019-12-31">
               </label>
-                <!-- <button class="search__date--btn">Submit</button> -->
               <label for="type">Filter By Room Type</label>
                 <select id="type" class="article__input article__room-type">
                   <option value="residential suite">Residential Suite</option>
@@ -70,9 +69,9 @@
               <button class="add__booking--btn">Submit</button>
           </form>
           <form class="article__input-container">
-            <p>Delete Booking</p>
+            <h2>Delete Booking</h2>
               <label for="cancel-booking">Conf # to Delete:
-              <input type="number" id="cancel-booking"class="article__input article__input-bookings">
+              <input type="number" id="cancel-booking" class="article__input article__input-bookings" placeholder="ex: 1572293130162">
               </label>
               <button class="delete__booking--btn">Submit</button>
           </form>

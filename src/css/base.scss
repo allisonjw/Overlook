@@ -9,6 +9,11 @@
   justify-content: center;
 }
 
+%flexColumn {
+  display: flex;
+  flex-direction: column;
+}
+
 body {
   margin: 0;
   font-family: 'Roboto', sans-serif;
@@ -60,8 +65,7 @@ span {
   align-items: center;
   background-color:  #eeeeee91;
   border-radius: 20px;
-  display: flex;
-  flex-direction: column;
+  @extend %flexColumn;
   font-size: $bodySizeSmall;
   margin: 0% 3% 2% 3%;
   padding: 0% 2% 1% 4%;
@@ -97,7 +101,7 @@ header {
     }
     .header__span {
       font-style: italic;
-      font-weight: 700;
+      font-weight: 900;
     }
   }
 }
@@ -163,8 +167,7 @@ button {
 
 .article__main {
   border: 8px solid $manager__main-color;
-  display: flex;
-  flex-direction: column;
+  @extend %flexColumn;
 }
 
 .article__enterBookForm-container,
@@ -177,8 +180,7 @@ button {
 }
 
 .article__enterBookForm-container {
-  display: flex;
-  flex-direction: column;
+  @extend %flexColumn;
     button {
       align-self: center;
     }
@@ -258,10 +260,13 @@ h2 {
     }
 }
 
+.add-res {
+  @extend %flexColumn; 
+}
+
 .form__bookRoom-container {
   border: 1px solid black;
-  display: flex;
-  flex-direction: column;
+  @extend %flexColumn; 
   margin-left: 13%;
   padding: 7%;
   width: 57%;
@@ -318,8 +323,7 @@ h2 {
 .div_guest-new--bookings,
 .div_guest-past--bookings {
   border: 1px solid black;
-  display: flex;
-  flex-direction: column;
+  @extend %flexColumn; 
   padding: 3px;
     h4 {
       font-size: .8em;

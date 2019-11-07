@@ -136,7 +136,6 @@ const domUpdates = {
     $('.guest__total').append(`$${total}`)
   },
 
-//(WIP)FOR MNGR TO VIEW GUEST BOOKINGS
   displayBookingsForGuest(bookingsData) {
     bookingsData.forEach(booking => {
       let bookingsList = $(`<li><h6>Date: ${booking.date}<br> Room Number: ${booking.roomNumber}</h6></li></ul>`);
@@ -144,7 +143,6 @@ const domUpdates = {
     });
   },
 
-  //displays on customer for 'Pick Avail Room'
   displayAvailableRoomsByType(roomsData, today) {
     roomsData.forEach(room => {
       let roomsList = $(`<option data-date='${today}' data-number='${room.number}' data-type='${room.roomType}' data-numBeds='${room.numBeds}' data-bedSize='${room.bedSize}' data-bidet='${room.bidet}'>A ${room.roomType} with ${room.numBeds} ${room.bedSize} bed(s), has bidet: ${room.bidet}</option>`)
