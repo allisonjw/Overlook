@@ -14,6 +14,11 @@
   flex-direction: column;
 }
 
+%buttonInputStyling {
+  height: 40px;
+  width: 85%;
+}
+
 body {
   margin: 0;
   font-family: 'Roboto', sans-serif;
@@ -47,11 +52,10 @@ span {
       -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
       -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
       box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+      @extend %buttonInputStyling;
       font-size: .8em;
-      height: 30px;
       outline: 0;
       padding-left: 2%;
-      width: 75%;
         &:invalid {
           border-color: red;
         }
@@ -126,7 +130,7 @@ nav {
 button {
   border-radius: 8px;
   font-size: 1em;
-  height: 30px;
+  height: 40px;
   margin: 10px;
   width: 13%;
     @include lg {
@@ -170,7 +174,7 @@ button {
 .article__enterBookForm-container,
 .article__bookRoom-container {
   border: 8px solid $manager__main-color;
-  width: 55%;
+  // width: 55%;
     @include sm {
       width: 76%;
     }
@@ -237,9 +241,10 @@ article {
   display: flex;
   flex-direction: row;
   font-size: $bodySizeSmall;
+  justify-content: space-evenly;
   margin: 4% 0 4% 0;
   padding: 3%;
-  width: 85%;
+  // width: 85%;
   @include sm {
     flex-direction: column;
     height: max-content;
@@ -252,10 +257,10 @@ h2 {
 
 .article__input-container {
   border: 1px solid black;
-  display: inline-block;
+  // display: inline-block;
   margin-left: 20px;
   padding: 16px;
-  width: 40%;
+  width: 50%;
     @include sm {
       margin: 20px;
       width: 85%;
@@ -276,11 +281,12 @@ h2 {
       width: 86%;
     }
     input {
+      @extend %buttonInputStyling;
       border-radius: 5px;
       font-size: .7em;
-      height: 40px;
+      // height: 40px;
       margin-bottom: 3%;
-      width: 84%;
+      // width: 84%;
       @include sm {
         width: 100%;
       }
@@ -293,9 +299,8 @@ h2 {
       }
     }
     button {
-      height: 40px;
+      @extend %buttonInputStyling;
       margin: 0;
-      width: 85%;
       @include sm {
         width: 100%;
       }
@@ -303,9 +308,9 @@ h2 {
 }
 
 .article__input {
+  @extend %buttonInputStyling;
   font-size: .7em;
-  height: 40px;
-  width: 85%;
+  margin-bottom: 3%;
 }
  
 .add__booking--btn,
@@ -315,9 +320,9 @@ h2 {
 .book__room--btn,
 .book__filter--btn,
 .access__booking--btn {
+  @extend %buttonInputStyling;
   border-radius: 5px;
-  height: 30px;
-  width: 60%;
+  margin: 0;
     &:hover {
       font-weight: 900;
       background-color: darkgray;
