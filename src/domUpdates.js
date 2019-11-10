@@ -115,7 +115,7 @@ const domUpdates = {
     newBookings.forEach(booking => {
       let upcomingRes = $(`
       <div class="div_guest-new--bookings"><h4>CONFIRMATION NUMBER: ${booking.id}</h4>
-      <p>${booking.date}</p><p>ROOM NUMBER: ${booking.roomNumber}</p>
+      <p>DATE: ${booking.date}</p><p>ROOM NUMBER: ${booking.roomNumber}</p>
       </div>`)
       $('.users__upcoming-bookings').append(upcomingRes)
     });
@@ -125,7 +125,7 @@ const domUpdates = {
     bookingsData.forEach(booking => {
       let pastRes = $(`
       <div class="div_guest-past--bookings"><h4>CONFIRMATION NUMBER: ${booking.id}</h4>
-      <p>${booking.date}</p><p>ROOM NUMBER: ${booking.roomNumber}</p>
+      <p>DATE: ${booking.date}</p><p>ROOM NUMBER: ${booking.roomNumber}</p>
       </div>`)
       $('.users__past-bookings').append(pastRes);
     });
@@ -138,7 +138,7 @@ const domUpdates = {
 
   displayBookingsForGuest(bookingsData) {
     bookingsData.forEach(booking => {
-      let bookingsList = $(`<li><h6>Date: ${booking.date}<br> Room Number: ${booking.roomNumber}</h6></li></ul>`);
+      let bookingsList = $(`<li><h6>DATE: ${booking.date}<br> ROOM NUMBER: ${booking.roomNumber}</h6></li></ul>`);
       $('.ul__guest-bookings').append(bookingsList);
     });
   },

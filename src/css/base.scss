@@ -114,15 +114,12 @@ nav {
 .header__users-name {
   bottom: 90%;
   font-size: $bodySizeSmall;
-  left: 63%;
-  position: absolute;
+  margin-left: 2%;
     @include sm {
       text-align: center;
-      top: 10%;
     }
     @include md {
       text-align: center;
-      top: 12%;
     }
 }
 
@@ -219,6 +216,9 @@ button {
 .section__guest-roomsTotal {
   background-image: linear-gradient( rgba(0,0,0,0.3), rgba(0, 0, 0, 0.3) ), url("../images/calm-clouds-exotic-297984.jpg");
   @extend %backgroundImgStyle;
+    @include sm {
+      height: max-content;
+    }
 }
 
 .section__main,
@@ -226,6 +226,9 @@ button {
 .section__bookings {
   background-image: linear-gradient( rgba(0,0,0,0.3), rgba(0, 0, 0, 0.3) ), url("../images/beach-deck-dock-247447.jpg");
   @extend %backgroundImgStyle;
+   @include sm {
+     height: max-content;
+   }
 }
 
 article {
@@ -234,13 +237,12 @@ article {
   display: flex;
   flex-direction: row;
   font-size: $bodySizeSmall;
+  margin: 4% 0 4% 0;
   padding: 3%;
-  position: absolute;
-  top: 25%;
   width: 85%;
   @include sm {
     flex-direction: column;
-    position: inherit;
+    height: max-content;
   }
 }
 
@@ -268,8 +270,7 @@ h2 {
   border: 1px solid black;
   @extend %flexColumn; 
   margin-left: 13%;
-  padding: 7%;
-  width: 57%;
+  padding-left: 7%;
     @include sm {
       margin: 0;
       width: 86%;
@@ -278,20 +279,23 @@ h2 {
       border-radius: 5px;
       font-size: .7em;
       height: 40px;
-      width: 85%;
+      margin-bottom: 3%;
+      width: 84%;
       @include sm {
         width: 100%;
       }
     }
     select {
+      margin-bottom: 3%;
       width: 85%;
       @include sm {
         width: 100%;
       }
     }
     button {
-      height: 38px;
-      width: 79%;
+      height: 40px;
+      margin: 0;
+      width: 85%;
       @include sm {
         width: 100%;
       }
@@ -320,11 +324,41 @@ h2 {
     }
 }
 
+ul {
+  height: 81%;
+  overflow: scroll;
+  padding: 0;
+}
+
+li {
+  background-color: $manager__guest-color;
+  border: 1px solid black;
+  list-style: none;
+  padding-left: 9%;
+  margin-bottom: 10%;
+}
+
+h3 {
+  height: 80%;
+  overflow: scroll;
+    @include lg {
+      height: 75%;
+    }
+    @include md {
+      height: 75%;
+    }
+    @include sm {
+      height: 61%;
+    }
+}
+
 .div_guest-new--bookings,
 .div_guest-past--bookings {
+  background-color: $manager__guest-color;
   border: 1px solid black;
+  margin-bottom: 3%;
   @extend %flexColumn; 
-  padding: 3px;
+  padding: 10px;
     h4 {
       font-size: .8em;
       margin: 4px 0 16px 0;
